@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
+    <script src="main.js"></script>
+</head>
+<body>
+  <h1>{{ project.name }}</h1>
+    {% if task_list %}
+    <ul>
+    {% for task in task_list %}
+    <li>
+       <h1>{{ task.name }}</h1>
+       <p>description : {{ task.description }}</p>
+       <div>cost : {{ task.cost }}</div>
+       <div>profit : {{ task.profit }}</div>
+       <div>start date : {{ task.start_date }}</div>
+       <div>end date : {{ task.end_date }}</div>
+    </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Tasks are available.</p>
+{% endif %}
+</body>
+</html>

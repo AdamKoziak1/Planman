@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
+    <script src="main.js"></script>
+</head>
+<body>
+    {% if project_list %}
+    <ul>
+    {% for project in project_list %}
+    <li>
+       <h1>{{ project.name }}</h1>
+       <p>description : {{ project.description }}</p>
+       <div>cost : {{ project.cost }}</div>
+       <div>profit : {{ project.profit }}</div>
+       <div>start date : {{ project.start_date }}</div>
+       <div>end date : {{ project.end_date }}</div>
+    </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No projects are available.</p>
+{% endif %}
+</body>
+</html>
