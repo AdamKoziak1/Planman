@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Project,Task
+
+def mainpage (request):
+    return render(request, 'projects/main.html')
+
 def projects_list (request):
     project_list = Project.objects.order_by('name')
     context =  {"project_list" : project_list}
