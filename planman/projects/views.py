@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.db import transaction
-from .forms import Project_create
+from .forms import Project_create,Task_form
 
 
 
@@ -38,4 +38,24 @@ def project_create(request):
         form = Project_create()
         print("BANANA")
     return render(request,'projects/create_project.html',{'Project_create':form})
+    
+@login_required
+def project_edit(request,project_number):
+    project = get_object_or_404(Project,id=project_number)
+    form = Project_create(request.POST or None, instance=project)
+    if form.is_valid():
+        form.save()
+    return render(request,'projects/create_project.html',{'Project_create':form})
+
+@login_required
+def task_create(request,project_number):
+    if request.method == 'POST':
+       form = Task_form(request.POST)
+       if form.is_valid():
+           new_task = form.save(commit = False)
+           new_task.save()
+    else:
+        form = Task_form()
+        print("BANANA")
+    return render(request,'projects/create_project.html',{'Task_form':form})
 
