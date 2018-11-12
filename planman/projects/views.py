@@ -36,7 +36,7 @@ def project_create(request):
            new_project.save()
     else:
         form = Project_create()
-        print("BANANA")
+        print("BANANA ERROR")
     return render(request,'projects/create_project.html',{'Project_create':form})
     
 @login_required
