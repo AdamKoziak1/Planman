@@ -1,13 +1,10 @@
 from django.shortcuts import redirect, HttpResponseRedirect
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from projects.models import Profile
+from projects.models import Project
 from django import forms
-class UserForm(forms.ModelForm):
+
+class Project_create(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'email')
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ('bio','location','birth_date')
+        model = Project
+        fields = ['name','description','cost','profit','start_date','end_date']

@@ -1,0 +1,10 @@
+<div >
+    <div >
+    <H3>Hi {{ user.email }}!</H3>
+    </div>
+   </div>
+   <form method="POST">
+    {% csrf_token %}
+    {{ Project_create.as_p }}
+    <input type="submit" value="Save">
+</form>
