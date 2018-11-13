@@ -50,12 +50,12 @@ def project_edit(request,project_number):
 @login_required
 def task_create(request,project_number):
     if request.method == 'POST':
-       form = Task_form(request.POST)
+       form = Task_form(request.POST,initial={'project': Project.objects.filter(id = project_number)})
        if form.is_valid():
            new_task = form.save(commit = False)
            new_task.save()
     else:
         form = Task_form()
         print("BANANA")
-    return render(request,'projects/create_project.html',{'Task_form':form})
+    return render(request,'projects/task_form.html',{'task_form':form})
 
