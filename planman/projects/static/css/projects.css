@@ -1,11 +1,40 @@
-h1{
-   background-color: blanchedalmond;
+* {
+    font-family: helvetica;
 }
-li{
-    background-color: rgb(233, 136, 56);
-    border: 10px;
-    border-style: dashed; 
+
+li {
+    border: 3px;
+    border-style: solid;
+    border-radius: 3px;
+    border-color: darkorange; 
+    display:inline-block;
+    min-width:30%;
+    width:250px;
+    margin:5px;
+    padding:15px;
+    text-align:left;
 }
-div{
-    background-color: rgb(219, 25, 35);
+
+.boxes {
+    margin-left:-40px;
+}
+
+.project-name {
+    font-size:30px;
+    padding-bottom:15px;
+}
+
+.logo-name {
+    font-family:impact;
+    font-size:60px;
+    color: darkorange;
+}
+
+.title-logo {
+    margin-top:-17px;
+    position:fixed;
+    background:white;
+    height:85px;
+    width:100%;
+    border-bottom:3px solid darkorange;
 }
