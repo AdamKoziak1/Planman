@@ -12,4 +12,4 @@ class Project_create(forms.ModelForm):
 class Task_form(forms.ModelForm):
     class Meta:
         model = Task
-        exclude = ['project']
+        fields = '__all__'

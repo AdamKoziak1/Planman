@@ -58,4 +58,11 @@ def task_create(request,project_number):
         form = Task_form()
         print("BANANA")
     return render(request,'projects/task_form.html',{'task_form':form})
+@login_required
+def task_edit(request,project_number,task_number):
+    task = get_object_or_404(Task,id=task_number)
+    form = Task_form(request.POST or None, instance=task)
+    if form.is_valid():
+        form.save()
+    return render(request,'projects/task_form.html',{'task_form':form})
 
