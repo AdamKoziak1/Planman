@@ -1,10 +1,27 @@
-<div >
-    <div >
-    <H3>Hi {{ user.email }}!</H3>
-    </div>
-   </div>
-   <form method="POST">
-    {% csrf_token %}
-    {{ Project_create.as_p }}
-    <input type="submit" value="Save">
-</form>
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
+    <title>Create Project</title>
+</head>
+
+<body >
+    <div id="title-logo">
+        <t class="logo-name">PlanMan</t>
+        <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
+     </div>
+     <div class='create'>
+        <div >
+            <div >
+                <H3>Hi {{ user.email }}!</H3>
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ Project_create.as_p }}
+            <input type="submit" value="Save">
+        </form>
+     </div>
+    
+</body>

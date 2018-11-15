@@ -1,10 +1,19 @@
-<div >
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
+</head>
+
+<body>
     <div >
-    <H3>Hi {{ user.email }}!</H3>
+      <div >
+        <H3>Hi {{ user.email }}!</H3>
+        </div>
     </div>
-   </div>
-   <form method="POST">
-    {% csrf_token %}
-    {{ task_form.as_p }}
-    <input type="submit" value="Save">
-</form>
+    <form method="POST">
+     {% csrf_token %}
+     {{ task_form.as_p }}
+     <input type="submit" value="Save">
+    </form>
+</body>
