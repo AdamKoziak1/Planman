@@ -12,7 +12,14 @@ from .forms import Project_create,Task_form
 
 
 def mainpage (request):
-    return render(request, 'projects/main.html')
+    if request.user.is_authenticated:
+        return redirect('/projects/')
+    else:
+        return render(request, 'projects/main.html')
+
+
+def homepage (request):
+   return render(request, 'projects/main.html')
 
 @login_required
 def projects_list (request):
