@@ -50,3 +50,22 @@ li {
     width:400px;
     align-self:middle;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.edit-button {
+    display: inline-block;
+    border: 2px solid darkorange;
+    border-radius:2px;
+    padding:3px;
+}
+
+.create-project {
+    display:inline-block;
+    border: 3px solid darkorange;
+    padding:5px;
+    border-radius:50px;
+}

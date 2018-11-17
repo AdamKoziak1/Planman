@@ -34,7 +34,7 @@ a:visited {
     border:3px solid darkorange;
     border-radius:5px;
     padding:5px;
-    width:200px;
+    width:175px;
     height:75px;
     margin:10px;
 }
@@ -71,23 +71,6 @@ p {
     display: inline;
     margin-left:30px;
     margin-right:75px;
-}
-
-#what-is-planman {
-
-}
-
-
-#login {
-
-}
-
-#about-us {
-
-}
-
-#support {
-
 }
 
 .banner {
