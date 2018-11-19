@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Delete project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+</head>
+<body>
+        <form method="post">
+        {% csrf_token %}
+        <h1> you sure you want to delete <strong>{{ task.name }}</strong> from <strong>{{ project.name }}</strong>? </h1>
+        <h2>You can not undo this!</h2>
+        <br>
+       
+       <input type="submit" value="Delete">
+    </form>
+        <a href="/projects/"><button>cancel!</button></a>
+    </body>
+</html>

@@ -75,14 +75,23 @@ def task_edit(request,project_number,task_number):
     return render(request,'projects/task_form.html',{'task_form':form})
 
 @login_required
-def project_create(request):
+def project_delete(request,project_number):
+    project = get_object_or_404(Project,id=project_number)
+    context =  {"project" : project}
     if request.method == 'POST':
-       form = Project_create(request.POST)
-       if form.is_valid():
-           new_project = form.save(commit = False)
-           new_project.save()
+        project.delete()
+        return redirect('/projects/')
     else:
-        form = Project_create()
-        print("BANANA ERROR")
-    return render(request,'projects/create_project.html',{'Project_create':form})
+        return render(request,'projects/delete_project.html',context)
+
+@login_required
+def task_delete(request,project_number,task_number):
+    task = get_object_or_404(Task,id=task_number)
+    project = get_object_or_404(Project,id=project_number) 
+    context =  {"project" : project, "task" : task}
+    if request.method == 'POST':
+        task.delete()
+        return redirect('/projects/'+ str(project_number))
+    else:
+        return render(request,'projects/delete_task.html',context)
 
