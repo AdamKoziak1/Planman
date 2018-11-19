@@ -114,6 +114,7 @@ SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
 ]
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'projects'
+LOGOUT_REDIRECT_URL = '/home'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='1038378804797-jjg1a87fjvgh7j8i32259suvv85i5cfh.apps.googleusercontent.com'  #Paste CLient Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'rZQ66nVv53qIrzS9_JKuIs1K' #Paste Secret Key
 

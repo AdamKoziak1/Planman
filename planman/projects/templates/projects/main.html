@@ -38,9 +38,16 @@
 
 <div id="login">
     <t>Become a PlanMan<br></t>
+    {% if request.user.is_authenticated %}
+    <a href="/logout">
+        <button>logout</button>
+    </a>
+    {% else %}
+
     <a href="{% url 'social:begin' 'google-oauth2' %}?next=/projects">
         <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
     </a>
+    {% endif %}
 </div>
 
 <div id="about-us">

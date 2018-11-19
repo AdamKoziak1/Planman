@@ -65,6 +65,7 @@ def task_create(request,project_number):
         form = Task_form()
         print("BANANA")
     return render(request,'projects/task_form.html',{'task_form':form})
+
 @login_required
 def task_edit(request,project_number,task_number):
     task = get_object_or_404(Task,id=task_number)
@@ -72,4 +73,16 @@ def task_edit(request,project_number,task_number):
     if form.is_valid():
         form.save()
     return render(request,'projects/task_form.html',{'task_form':form})
+
+@login_required
+def project_create(request):
+    if request.method == 'POST':
+       form = Project_create(request.POST)
+       if form.is_valid():
+           new_project = form.save(commit = False)
+           new_project.save()
+    else:
+        form = Project_create()
+        print("BANANA ERROR")
+    return render(request,'projects/create_project.html',{'Project_create':form})
 
