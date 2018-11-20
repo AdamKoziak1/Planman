@@ -31,7 +31,7 @@ li {
 }
 
 .title-logo {
-    margin-top:-17px;
+    margin-top:-10px;
     position:fixed;
     background:white;
     height:85px;
@@ -85,5 +85,19 @@ a {
     width:50px;
     display: inline-block;
     margin-left:20px;
-    margin-top:-3x;
+    margin-top:2px;
+}
+
+.delete-box {
+    border:3px solid darkorange;
+    border-radius:3px;
+    align-self:center;
+    padding:10px;
+    width:400px;
+    align-self:middle;
+    text-align:center;
+}
+
+.delete-buttons {
+    margin:10px;
 }

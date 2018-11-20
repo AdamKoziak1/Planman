@@ -8,6 +8,12 @@
  
 </head>
 <body>
+    <a href="/projects/">
+        <div id="title-logo">
+            <t class="logo-name">PlanMan</t>
+            <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
+        </div>
+    </a>
         <form method="post">
         {% csrf_token %}
         <h1> you sure you want to delete <strong>{{ task.name }}</strong> from <strong>{{ project.name }}</strong>? </h1>
