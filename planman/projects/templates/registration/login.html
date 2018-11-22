@@ -3,10 +3,13 @@
 
 <head>
   <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
-  <link rel="icon" href="{% static 'img/logo.png' %}">
 </head>
 
 <body>
+    <div id="title-logo">
+        <t class="logo-name">PlanMan</t>
+        <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
+    </div>
   <div class="container">
     <div class="row">
      <br><br>
@@ -14,7 +17,7 @@
        <h1>Become a planman</h1>
        <h4>Signing in? That sounds like a plan!</h4>
        <br>
-       <a href="{% url 'social:begin' 'google-oauth2' %}?next=/projects">
+       <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
         <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
        </a>
        <br>

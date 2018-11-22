@@ -252,7 +252,7 @@ section.features .section-heading p {
 
 section.features .device-container,
 section.features .feature-item {
-  max-width: 800px;
+  max-width: 325px;
   margin: 0 auto;
 }
 
@@ -435,8 +435,4 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
 .btn-xl {
   font-size: 11px;
   padding: 15px 45px;
-}
-
-container.h2 {
-  width: 200px;
 }
