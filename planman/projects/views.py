@@ -23,7 +23,7 @@ def homepage (request):
 
 @login_required
 def projects_list (request):
-    project_list = Project.objects.order_by('date')
+    project_list = Project.objects.order_by('end_date')
     context =  {"project_list" : project_list}
     return render(request, 'projects/projects.html',context)
 
