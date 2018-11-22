@@ -11,10 +11,12 @@
     <link rel="icon" href="{% static 'img/logo.png' %}">
 </head>
 <body>
-    <div id="title-logo">
-        <t class="logo-name">PlanMan</t>
-        <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
-    </div>
+    <a href="/projects/">
+        <div id="title-logo">
+          <t class="logo-name">PlanMan</t>
+          <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
+        </div>
+      </a>
     <a href='{{ project_id }}/task_create'><button> Create task </button> </a>
   <h1>{{ project_name.name }}</h1>
     {% if task_list %}
@@ -27,6 +29,9 @@
        <div>profit : {{ task.profit }}</div>
        <div>start date : {{ task.start_date }}</div>
        <div>end date : {{ task.end_date }}</div>
+       <a href='{{ project_id }}/{{ task.id }}/task_edit'><button> Edit task </button> </a>
+       <a href='{{ project_id }}/{{ task.id }}/task_delete'><button> delete task? </button> </a>
+
     </li>
     {% endfor %}
     </ul>

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
+    <link rel="icon" href="{% static 'img/logo.png' %}">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Delete project</title>
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
 </head>
@@ -14,13 +17,14 @@
             <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
         </div>
     </a>
+
+    <div class="delete-box">
         <form method="post">
-        {% csrf_token %}
-        <h1> you sure you want to delete <strong>{{ task.name }}</strong> from <strong>{{ project.name }}</strong>? </h1>
-        <h2>You can not undo this!</h2>
-        <br>
-       
-       <input type="submit" value="Delete">
+            {% csrf_token %}
+            <h1>Are you sure you want to delete <strong><b><i>{{ task.name }}</i></b></strong>? </h1>
+            <h2><u>You can not undo this.</u><br></h2>
+            <div class=delete-buttons>
+                <input type="submit" value="Delete">
     </form>
         <a href="/projects/"><button>cancel!</button></a>
     </body>

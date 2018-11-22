@@ -23,7 +23,7 @@ def homepage (request):
 
 @login_required
 def projects_list (request):
-    project_list = Project.objects.order_by('date')
+    project_list = Project.objects.order_by('end_date')
     context =  {"project_list" : project_list}
     return render(request, 'projects/projects.html',context)
 
@@ -41,6 +41,7 @@ def project_create(request):
        if form.is_valid():
            new_project = form.save(commit = False)
            new_project.save()
+           return redirect('/projects/')
     else:
         form = Project_create()
         print("BANANA ERROR")
@@ -52,6 +53,7 @@ def project_edit(request,project_number):
     form = Project_create(request.POST or None, instance=project)
     if form.is_valid():
         form.save()
+        return redirect('/projects/')
     return render(request,'projects/create_project.html',{'Project_create':form})
 
 @login_required
@@ -61,6 +63,7 @@ def task_create(request,project_number):
        if form.is_valid():
            new_task = form.save(commit = False)
            new_task.save()
+           return redirect('/projects/'+str(project_number))
     else:
         form = Task_form()
         print("BANANA")
@@ -72,6 +75,7 @@ def task_edit(request,project_number,task_number):
     form = Task_form(request.POST or None, instance=task)
     if form.is_valid():
         form.save()
+        return redirect('/projects/'+str(project_number))
     return render(request,'projects/task_form.html',{'task_form':form})
 
 @login_required
