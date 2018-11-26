@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.db import transaction
-from .forms import Project_create,Task_form
+from .forms import Project_create,Task_form,Project_user
 
 
 
@@ -37,15 +37,22 @@ def tasks_list (request,project_number):
 @login_required
 def project_create(request):
     if request.method == 'POST':
-       form = Project_create(request.POST)
-       if form.is_valid():
-           new_project = form.save(commit = False)
+       form_project = Project_create(request.POST)
+       form_user = Project_user(request.POST)
+       if form_project.is_valid() and form_user.is_valid():
+           new_project = form_project.save(commit = False)
+           new_project.owner = request.user
            new_project.save()
+           project_members = form_user.save(commit = False)
+           project_members.project =  Project.objects.get(id = new_project.id)
+           project_members.save()
+           print(project_members.objects.filter(id = project_members.id).user)
            return redirect('/projects/')
     else:
-        form = Project_create()
+        form_project = Project_create()
+        form_user = Project_user()
         print("BANANA ERROR")
-    return render(request,'projects/create_project.html',{'Project_create':form})
+    return render(request,'projects/create_project.html',{'Project_create':form_project, 'Project_user':form_user})
     
 @login_required
 def project_edit(request,project_number):
@@ -59,9 +66,10 @@ def project_edit(request,project_number):
 @login_required
 def task_create(request,project_number):
     if request.method == 'POST':
-       form = Task_form(request.POST,initial={'project': Project.objects.filter(id = project_number)})
+       form = Task_form(request.POST)
        if form.is_valid():
            new_task = form.save(commit = False)
+           new_task.project =  Project.objects.get(id = project_number)
            new_task.save()
            return redirect('/projects/'+str(project_number))
     else:
