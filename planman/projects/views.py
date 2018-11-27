@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Project,Task
+from .models import Project,Task,Project_members
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
@@ -24,7 +24,7 @@ def homepage (request):
 @login_required
 def projects_list (request):
     project_list = Project.objects.order_by('end_date')
-    context =  {"project_list" : project_list}
+    context =  {"project_list" : project_list,'users_of_project':Project_members.objects.first()}
     return render(request, 'projects/projects.html',context)
 
 @login_required
@@ -43,10 +43,11 @@ def project_create(request):
            new_project = form_project.save(commit = False)
            new_project.owner = request.user
            new_project.save()
-           project_members = form_user.save(commit = False)
-           project_members.project =  Project.objects.get(id = new_project.id)
-           project_members.save()
-           print(project_members.objects.filter(id = project_members.id).user)
+           project_users = form_user.save(commit = False)
+           project_users.project =  Project.objects.get(id = new_project.id)
+           project_users.save()
+           print('Hello')
+           print(Project_members.objects.get(id = project_users.id).users)
            return redirect('/projects/')
     else:
         form_project = Project_create()

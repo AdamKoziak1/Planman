@@ -43,6 +43,7 @@
         <div class='profit'><strong>Profit: </strong>{{ project.profit }}</div>
         <div class='start-date'><strong>Start date:</strong> {{ project.start_date }}</div>
         <div class='end-date'><strong>End date:</strong> {{ project.end_date }}<br></div>
+        <div class='end-date'>{{ users_of_project.users }}<br></div>
       </a>
 
       <a href='/projects/{{ project.id }}/project_edit'>
