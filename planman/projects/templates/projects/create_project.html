@@ -21,6 +21,7 @@
         <form method="POST">
             {% csrf_token %}
             {{ Project_create.as_p }}
+            {{ Project_user.as_p }}
             <input type="submit" value="Save">
         </form>
         <a href="/projects/"><button>Cancel</button></a>
