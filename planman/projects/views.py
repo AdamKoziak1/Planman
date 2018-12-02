@@ -21,11 +21,28 @@ def mainpage (request):
 def homepage (request):
    return render(request, 'projects/main.html')
 
+#not a webpage method, is just being used to create a project and project member in the same class
+class Full_project:
+    project = ''
+    project_members = ''
+    def __init__(self,project,project_members):
+        self.project=project
+        self.project_members=project_members
+
+
+
 @login_required
-def projects_list (request):
-    project_list = Project.objects.order_by('end_date')
-    context =  {"project_list" : project_list,'users_of_project':Project_members.objects.first()}
+def projects_list (request): 
+    project_list = Project.objects.order_by('id')
+    
+    full_projects = []
+    for project in project_list:
+        full_projects.append(Full_project(project,Project_members.objects.get(project= project)))
+    context =  {"project_list" : full_projects}
     return render(request, 'projects/projects.html',context)
+
+
+
 
 @login_required
 def tasks_list (request,project_number):
@@ -46,8 +63,6 @@ def project_create(request):
            project_users = form_user.save(commit = False)
            project_users.project =  Project.objects.get(id = new_project.id)
            project_users.save()
-           print('Hello')
-           print(Project_members.objects.get(id = project_users.id).users)
            return redirect('/projects/')
     else:
         form_project = Project_create()
