@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Project,Task,Project_members
@@ -16,6 +17,20 @@ def mainpage (request):
         return redirect('/projects/')
     else:
         return render(request, 'projects/main.html')
+
+
+def debuging(request, message):
+    message = {'message' : message}
+    return render(request, 'projects/debug.html',message)
+
+
+def all_users(request,project_number):
+    if request.method == 'POST':
+        return debuging(request, request.POST.getlist('email'))
+    user_list = User.objects.order_by('first_name')
+    context = {'user_list' : user_list}
+    return render(request, 'projects/user_list.html', context)
+
 
 
 def homepage (request):

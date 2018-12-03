@@ -36,7 +36,8 @@
   <ul class='boxes'>
     
    {% for project in project_list %}
-      <a href={{ project.project.id }}>
+   <li>   
+   <a href={{ project.project.id }}>
         <div class='project-name'><strong>{{ project.project.name }}</strong></div>
         <div class='desc'><strong>Description: </strong>{{ project.project.description }}</div>
         <div class='cost'><strong><br>Cost:</strong> {{ project.project.cost }}</div>
@@ -48,11 +49,11 @@
         {% endif %}
       </a>
 
-      <a href='/projects/{{ project.id }}/project_edit'>
+      <a href='/projects/{{ project.project.id }}/project_edit'>
         <div class='edit-button'>Edit Project</div>
       </a>
       
-      <a href='/projects/{{ project.id }}/project_delete'>
+      <a href='/projects/{{ project.project.id }}/project_delete'>
         <div class='edit-button'>Delete Project</div>
       </a>
     </li>
