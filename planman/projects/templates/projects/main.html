@@ -1,70 +1,202 @@
 <!DOCTYPE html>
 {% load static %}
+<html lang="en">
 
-<head>
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>PlanMan</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
-    <link rel="icon" href="{% static 'img/logo.png' %}">
-</head>
 
-<body>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-<div class = banner>
-    <div id="title-logo">
-        <t class="logo-name">PlanMan</t>
-        <img src="{% static 'img/logo.png' %}" width="100px" height="100px" alt="PlanMan Logo">
-    </div>
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Lato' %}" rel="stylesheet">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900' %}" rel="stylesheet">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Muli' %}" rel="stylesheet">
 
-    <div class="buttons-all">
-        <a href="#what-is-planman"><h2 class="buttons">What is PlanMan</h2></a>
-        <a href="#login"><h2 class="buttons">Become a PlanMan</h2></a>
-        <a href="#about-us_support"><h2 class="buttons">About us/ Support</h2></a>
-        <a href="/projects/"><h2 class="buttons">Your <br>Projects</h2></a>
-    </div>
-</div>
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="{% static 'device-mockups/device-mockups.min.css' %}">
 
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/new-age.min.css' %}" rel="stylesheet">
 
+  </head>
 
-<div class="body">
+  <body id="page-top">
 
-<div id="what-is-planman">
-        <div id="space"><br><br><br><br><br><br></div>
-    <h1>What is PlanMan?</h1>
-    <p>PlanMan is an online project management software. It is structured around projects, and tasks within those
-        projects. Each project and tasks has goals which need to be reached before completion. Tasks can be split up
-        into smaller and smaller nested subclasses for organization purposes. Users can add attachments to projects, as
-        well as control who has access to them. The program uses an algorithm based on urgency and remaining time to
-        show you the next task you should finish.</p>
-</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">PlanMan</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#features">What is PlanMan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#login">Become a PlanMan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/projects">Your Projects</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-<div id="login">
-    <t>Become a PlanMan<br></t>
-    {% if request.user.is_authenticated %}
-    <a href="/logout">
-        <button>logout</button>
-    </a>
-    {% else %}
+    <header class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-lg-7 my-auto">
+            <div class="header-content mx-auto">
+              <h1 class="mb-5">PlanMan is a project management software which helps you organize projects easier than ever!</h1>
+              <a href="#login" class="btn btn-outline btn-xl js-scroll-trigger">Become a PlanMan</a>
+            </div>
+          </div>
+          <div class="col-lg-5 my-auto">
+            <img src="{% static 'img/logo.png' %}" class="img-fluid" alt="">
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/projects">
-        <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
-    </a>
-    {% endif %}
-</div>
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-heading text-center">
+          <h2>Unlimited Features, Unlimited Fun</h2>
+          <p class="text-muted">Check out what you can do with this app theme!</p>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 my-auto">
+            <img src="{% static 'img/logo.png' %}">
+          </div>
+          <div class="col-lg-8 my-auto">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-screen-smartphone text-primary"></i>
+                    <h3>Device Mockups</h3>
+                    <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-camera text-primary"></i>
+                    <h3>Flexible Use</h3>
+                    <p class="text-muted">Put an image, video, animation, or anything else in the screen!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-present text-primary"></i>
+                    <h3>Free to Use</h3>
+                    <p class="text-muted">As always, this theme is free to download and use for any purpose!</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-lock-open text-primary"></i>
+                    <h3>Open Source</h3>
+                    <p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div id="about-us">
-    <h1>About us</h1>
-    <p>PlanMan was created by 2 high school students, Youssef Zayed and Adam Koziak.</p>
-</div>
+    <section class="cta" id="login">
+      <div class="cta-content">
+        <div class="container">
+          <h2>Stop waiting.<br>Start planning.</h2>
+          <div class="btn btn-outline btn-xl js-scroll-trigger">
+            {% if request.user.is_authenticated %}
+             <a href="/logout">
+               <t id="#textlink">Log Out</t>
+             </a>
+            {% else %}
+             <a href="{% url 'social:begin' 'google-oauth2' %}?next=/projects">
+               <t id="#textlink">Become a PlanMan<br></t>
+             </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </section>
 
-<div id="support">
-    <h1>Support</h1>
-    <p>If you have any issues or concerns with PlanMan, please feel free to contact the creators below: <br><br>
-        <strong>Adam Koziak:</strong><br>akozi1@ocdsb.ca <br>adam.koziak2@gmail.com <br>(613)-796-7328<br><br>
-        <strong>Youssef Zayed:</strong><br>yzaye1@ocdsb.ca</p>
-</div>
+    <section class="contact bg-primary" id="contact">
+      <div class="container">
+        <h2>We
+          <i class="fas fa-heart"></i>
+          new friends!</h2>
+        <ul class="list-inline list-social">
+          <li class="list-inline-item social-twitter">
+            <a href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-facebook">
+            <a href="#">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </li>
+          <li class="list-inline-item social-google-plus">
+            <a href="#">
+              <i class="fab fa-google-plus-g"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-</div>
+    <footer>
+      <div class="container">
+        <p>&copy; Your Website 2018. All Rights Reserved.</p>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a href="#">Privacy</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">Terms</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">FAQ</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
 
-</body>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{% static 'js/new-age.min.js"></script>
+
+  </body>
 
 </html>
