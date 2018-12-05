@@ -44,9 +44,12 @@
         <div class='profit'><strong>Profit: </strong>{{ project.project.profit }}</div>
         <div class='start-date'><strong>Start date:</strong> {{ project.project.start_date }}</div>
         <div class='end-date'><strong>End date:</strong> {{ project.project.end_date }}<br></div>
-        {% if project.project_members.users %}
-        <div >{{ project.project_members.users }}<br></div>
-        {% endif %}
+        <div><strong>Users:</strong></div> 
+        <div> {{ project.project.owner.first_name }} ({{ project.project.owner.email }}) </div>
+        {% for user in  project.project_members.users.all  %}
+        <div >{{  user.first_name }} ({{user.email}})<br></div>
+        {% endfor %}
+        <br>
       </a>
 
       <a href='/projects/{{ project.project.id }}/project_edit'>

@@ -26,7 +26,15 @@ def debuging(request, message):
 
 def all_users(request,project_number):
     if request.method == 'POST':
-        return debuging(request, request.POST.getlist('email'))
+        project_member_object = Project_members.objects.get(project = Project.objects.get(id = project_number))
+        for user_email in request.POST.getlist('email'):
+            if user_email == Project.objects.get(id = project_number).owner.email :
+                continue
+            else:
+                project_member_object.users.add(User.objects.get(email = user_email))
+        project_member_object.save()
+        #return debuging(request, project_member_object.users.all())
+        return redirect('/projects/')
     user_list = User.objects.order_by('first_name')
     context = {'user_list' : user_list}
     return render(request, 'projects/user_list.html', context)
@@ -46,13 +54,15 @@ class Full_project:
 
 
 
+
 @login_required
 def projects_list (request): 
     project_list = Project.objects.order_by('id')
-    
     full_projects = []
     for project in project_list:
-        full_projects.append(Full_project(project,Project_members.objects.get(project= project)))
+        if request.user.email == project.owner.email or request.user in Project_members.objects.get(project= project).users.all():
+            full_projects.append(Full_project(project,Project_members.objects.get(project= project)))
+    #return debuging(request, full_projects[0].project_members.users.all())
     context =  {"project_list" : full_projects}
     return render(request, 'projects/projects.html',context)
 

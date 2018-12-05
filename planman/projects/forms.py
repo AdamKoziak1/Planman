@@ -16,6 +16,6 @@ class Task_form(forms.ModelForm):
 class Project_user(forms.ModelForm):
     class Meta:
         model = Project_members
-        exclude = ['project']
-        users = forms.ModelMultipleChoiceField(queryset=User.objects.all())
+        exclude = ['project','users']
+
  
