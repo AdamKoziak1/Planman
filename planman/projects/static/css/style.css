@@ -21,7 +21,7 @@ a:visited {
 }
 
 .buttons {
-    display: inline-block;
+    display: inline-grid;
     vertical-align:middle;
     align-content:center;
     align-self:flex-end;
@@ -34,7 +34,8 @@ a:visited {
     border:3px solid darkorange;
     border-radius:5px;
     padding:5px;
-    width:175px;
+    max-width:1fr;
+    min-width:100px;
     height:75px;
     margin:10px;
 }
