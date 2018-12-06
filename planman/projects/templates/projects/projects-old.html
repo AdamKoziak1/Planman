@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
+    <script src="main.js"></script>
+    <link rel="icon" href="{% static 'img/logo.png' %}">
+</head>
+<body>
+
+  <a href="#top">
+    <div class="title-logo">
+      <t class="logo-name">PlanMan</t>
+      <img src="{% static 'img/logo.png' %}" width="75px" height="75px" alt="PlanMan Logo">
+    </div>
+  </a>
+
+  <div id='top'>
+    <p><br><br><br><br></p>
+  </div>
+
+  <a href="/project_create">
+    <div class='create-project'>
+     <h2 class="create-text">Create <br>Project</h2>
+     <div class="plus">
+      <img src="{% static 'img/plus.png' %}" width = "50px" height = "50px">
+     </div>
+    </div>
+  </a>
+
+  {% if project_list %}
+  <ul class='boxes'>
+    
+   {% for project in project_list %}
+   <li>   
+   <a href={{ project.project.id }}>
+        <div class='project-name'><strong>{{ project.project.name }}</strong></div>
+        <div class='desc'><strong>Description: </strong>{{ project.project.description }}</div>
+        <div class='cost'><strong><br>Cost:</strong> {{ project.project.cost }}</div>
+        <div class='profit'><strong>Profit: </strong>{{ project.project.profit }}</div>
+        <div class='start-date'><strong>Start date:</strong> {{ project.project.start_date }}</div>
+        <div class='end-date'><strong>End date:</strong> {{ project.project.end_date }}<br></div>
+        <div><strong>Users:</strong></div> 
+        <div> {{ project.project.owner.first_name }} ({{ project.project.owner.email }}) </div>
+        {% for user in  project.project_members.users.all  %}
+        <div >{{  user.first_name }} ({{user.email}})<br></div>
+        
+        <br>
+      </a>
+
+      <a href='/projects/{{ project.project.id }}/project_edit'>
+        <div class='edit-button'>Edit Project</div>
+      </a>
+      
+      <a href='/projects/{{ project.project.id }}/project_delete'>
+        <div class='edit-button'>Delete Project</div>
+      </a>
+    </li>
+   
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No projects are available.</p>
+  {% endif %}
+  <a href="/home">
+    <button id="back">Back to home</button>
+  </a>
+</body>
+</html>
