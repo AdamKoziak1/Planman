@@ -43,6 +43,7 @@
     </nav>
 
     <!-- Page Content -->
+    
     <div class="container">
 
       <!-- Page Heading -->
@@ -54,41 +55,6 @@
         </div>
       </a>
 
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-           
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project One</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Two</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Three</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-            </div>
-          </div>
-        </div>
-
       {% if project_list %}
       
        {% for project in project_list %}
@@ -96,19 +62,20 @@
         <div class="row">
           <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
+              <a href="#"></a>
               <div class="card-body">
-                <h4 class="card-title">
-                  <a href={{ project.project.id }}>{{ project.project.name }}</a>
-                </h4>
-                <p class="description"><strong>Description: </strong>{{ project.project.description }}</p>
-                <p class='cost'><strong><br>Cost:</strong> {{ project.project.cost }}</p>
-                <p class='profit'><strong>Profit: </strong>{{ project.project.profit }}</p>
-                <p class='start-date'><strong>Start date:</strong> {{ project.project.start_date }}</p>
-                <p class='end-date'><strong>End date:</strong> {{ project.project.end_date }}<br></p>
-                <p><strong>Users:</strong></div> 
-                <p> {{ project.project.owner.first_name }} <i>({{ project.project.owner.email }})</i> </p>
+                <h2 class="card-title">
+                  <a href={{ project.project.id }}><strong>{{ project.project.name }}</strong></a>
+                </h2>
+                <div class='desc'><strong>Description: </strong>{{ project.project.description }}</div>
+                <div class='cost'><strong><br>Cost:</strong> {{ project.project.cost }}</div>
+                <div class='profit'><strong>Profit: </strong>{{ project.project.profit }}</div>
+                <div class='start-date'><strong>Start date:</strong> {{ project.project.start_date }}</div>
+                <div class='end-date'><strong>End date:</strong> {{ project.project.end_date }}<br></div>
+                <div><strong>Users:</strong></div> 
+                <div> {{ project.project.owner.first_name }} <i>({{ project.project.owner.email }})</i> </div>
                 {% for user in  project.project_members.users.all  %}
-                <p>{{  user.first_name }} <i>({{user.email}})</i><br></p>
+                <div >{{  user.first_name }} <i>({{user.email}})</i><br></div>
                 {% endfor %}
                 <br>
                 <a href='/projects/{{ project.project.id }}/project_edit'>
@@ -117,16 +84,23 @@
                 <a href='/projects/{{ project.project.id }}/project_delete'>
                   <button>Delete Project</button>
                 </a>
+                
               </div>
             </div>
           </div>
-        {% endfor %}
-      {% else %}
-        <p>No projects are available.</p>
-      {% endif %}
         
-      <!-- /.row -->
+        
+        {% endfor %}
+      
 
+      {% else %}
+      <p>No projects are available.</p>
+      {% endif %}
+
+      
+        
+      </div>
+      <!-- /.row -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
