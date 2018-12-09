@@ -27,7 +27,7 @@ a:hover, a:focus {
 }
 
 #textlink .a:hover, #textlink .a:focus, #textlink .a {
-  color: gray !important;
+  color: darkorange !important;
   text-decoration:none;
 }
 
@@ -102,7 +102,7 @@ section h2 {
 }
 
 #mainNav .navbar-nav > li > a.active {
-  color: #fdcc52 !important;
+  color: darkorange !important;
   background-color: gray;
 }
 
@@ -117,7 +117,7 @@ section h2 {
 
 #mainNav .navbar-nav > li > a:hover,
 #mainNav .navbar-nav > li > a:focus:hover {
-  color: gray;
+  color: darkorange;
 }
 
 @media (min-width: 992px) {
@@ -147,7 +147,7 @@ section h2 {
     color: #222222;
   }
   #mainNav.navbar-shrink .navbar-brand:hover, #mainNav.navbar-shrink .navbar-brand:focus {
-    color: #fdcc52;
+    color: darkorange;
   }
   #mainNav.navbar-shrink .navbar-nav > li > a,
   #mainNav.navbar-shrink .navbar-nav > li > a:focus {
@@ -155,7 +155,7 @@ section h2 {
   }
   #mainNav.navbar-shrink .navbar-nav > li > a:hover,
   #mainNav.navbar-shrink .navbar-nav > li > a:focus:hover {
-    color: #fdcc52;
+    color: darkorange;
   }
 }
 
