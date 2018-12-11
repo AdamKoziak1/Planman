@@ -48,7 +48,7 @@
         <div> {{ project.project.owner.first_name }} ({{ project.project.owner.email }}) </div>
         {% for user in  project.project_members.users.all  %}
         <div >{{  user.first_name }} ({{user.email}})<br></div>
-        
+        {% endfor %}
         <br>
       </a>
 

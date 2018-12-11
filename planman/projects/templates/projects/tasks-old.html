@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
+    <script src="main.js"></script>
+    <link rel="icon" href="{% static 'img/logo.png' %}">
+</head>
+<body>
+    <a href="/projects/">
+        <div id="title-logo">
+          <t class="logo-name">PlanMan</t>
+          <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
+        </div>
+      </a>
+
+      <h1>{{ project_name.name }}</h1>
+
+      
+    <a href='{{ project_id }}/task_create'><button> Create task </button> </a>
+    <a href='{{ project_id }}/user_list'><button> Add users to project </button> </a>
+
+  
+    {% if task_list %}
+    <ul>
+    {% for task in task_list %}
+    <li>
+       <h1>{{ task.name }}</h1>
+       <p>description : {{ task.description }}</p>
+       <div>cost : {{ task.cost }}</div>
+       <div>profit : {{ task.profit }}</div>
+       <div>start date : {{ task.start_date }}</div>
+       <div>end date : {{ task.end_date }}</div>
+       <a href='{{ project_id }}/{{ task.id }}/task_edit'><button> Edit task </button> </a>
+       <a href='{{ project_id }}/{{ task.id }}/task_delete'><button> delete task? </button> </a>
+
+    </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Tasks are available.</p>
+{% endif %}
+</body>
+</html>

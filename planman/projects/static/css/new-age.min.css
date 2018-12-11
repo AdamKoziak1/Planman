@@ -405,14 +405,14 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
   text-decoration: none;
 }
 
-.bg-primary {
-  background: #fdcc52;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fdcc52), to(#fdc539));
-  background: linear-gradient(#fdcc52, #fdc539);
+.bg-primary {    
+  background: white;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(white));
+  background: linear-gradient(white, white);
 }
 
 .text-primary {
-  color: #fdcc52;
+  color: white;
 }
 
 .no-gutter > [class*='col-'] {

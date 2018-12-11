@@ -1,44 +1,102 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
-<head>
-    <meta charset="utf-8" />
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Task</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
-    <script src="main.js"></script>
     <link rel="icon" href="{% static 'img/logo.png' %}">
-</head>
-<body>
-    <a href="/projects/">
-        <div id="title-logo">
-          <t class="logo-name">PlanMan</t>
-          <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
+    <script src="main.js"></script>
+
+    <title>{{ project_name.name }}</title>
+
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/3-col-portfolio.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">PlanMan</a>
+        <a class="navbar-brand" href="#"><img src="{% static '/img/logo.png' %}" width="40px" height="40px" alt="PlanMan Logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/projects">Back to Projects</a>
+            </li>
+          </ul>
         </div>
-      </a>
-    <a href='{{ project_id }}/task_create'><button> Create task </button> </a>
-    <a href='{{ project_id }}/user_list'><button> Add users to project </button> </a>
+      </div>
+    </nav>
 
-  <h1>{{ project_name.name }}</h1>
-    {% if task_list %}
-    <ul>
-    {% for task in task_list %}
-    <li>
-       <h1>{{ task.name }}</h1>
-       <p>description : {{ task.description }}</p>
-       <div>cost : {{ task.cost }}</div>
-       <div>profit : {{ task.profit }}</div>
-       <div>start date : {{ task.start_date }}</div>
-       <div>end date : {{ task.end_date }}</div>
-       <a href='{{ project_id }}/{{ task.id }}/task_edit'><button> Edit task </button> </a>
-       <a href='{{ project_id }}/{{ task.id }}/task_delete'><button> delete task? </button> </a>
+    <div class="container">
+        <h1 class="my-4">{{ project_name.name }}</h1>
+        <div class='desc'><strong>Description: </strong>{{ project.project.description }}</div>
+        <div class='cost'><strong><br>Cost:</strong> {{ project.project.cost }}</div>
+        <div class='profit'><strong>Profit: </strong>{{ project.project.profit }}</div>
+        <div class='start-date'><strong>Start date:</strong> {{ project.project.start_date }}</div>
+        <div class='end-date'><strong>End date:</strong> {{ project.project.end_date }}<br></div>
+        <div><strong>Users:</strong></div> 
+        <div> {{ project.project.owner.first_name }} ({{ project.project.owner.email }}) </div>
+        {% for user in  project.project_members.users.all  %}
+            <div >{{  user.first_name }} ({{user.email}})<br></div>
+        {% endfor %}
 
-    </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Tasks are available.</p>
-{% endif %}
-</body>
+        <br>
+        <a href='{{ project_id }}/user_list'>
+            <button>Add users</button> 
+        </a>
+        <br>
+        <br>
+        <a href="{{ project_id }}/task_create">
+            <button>Create Task</button>
+        </a>
+
+        <br>
+        <br>
+
+        <div class="row">
+         {% if task_list %}
+          {% for task in task_list %}
+           <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+             <div class="card-body">
+              <h4 class="card-title">{{ task.name }}</h4>
+              <p><strong>Description: </strong>{{ task.description }}</p>
+              <div><strong>Cost: </strong>{{ task.cost }}</div>
+              <div><strong>Profit: </strong>{{ task.profit }}</div>
+              <div><strong>Start date: </strong>{{ task.start_date }}</div>
+              <div><strong>End date: </strong>{{ task.end_date }}</div>
+              <a href='{{ project_id }}/{{ task.id }}/task_edit'>
+                <button>Edit Task</button>
+              </a>
+              <a href='{{ project_id }}/{{ task.id }}/task_delete'>
+                <button>Delete Task</button>
+              </a>
+             </div>
+            </div>
+           </div>
+          {% endfor %}
+         {% else %}
+          <p>No Tasks are available.</p>
+         {% endif %}
+        </div>
+    </div>
+
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  </body>
+
 </html>
