@@ -41,17 +41,16 @@
 
     <div class="container">
         <h1 class="my-4">{{ project_name.name }}</h1>
-        <div class='desc'><strong>Description: </strong>{{ project.project.description }}</div>
-        <div class='cost'><strong><br>Cost:</strong> {{ project.project.cost }}</div>
-        <div class='profit'><strong>Profit: </strong>{{ project.project.profit }}</div>
-        <div class='start-date'><strong>Start date:</strong> {{ project.project.start_date }}</div>
-        <div class='end-date'><strong>End date:</strong> {{ project.project.end_date }}<br></div>
+        <div class='desc'><strong>Description: </strong>{{ project_name.description }}</div>
+        <div class='cost'><strong><br>Cost:</strong> {{ project_name.cost }}</div>
+        <div class='profit'><strong>Profit: </strong>{{ project_name.profit }}</div>
+        <div class='start-date'><strong>Start date:</strong> {{ project_name.start_date }}</div>
+        <div class='end-date'><strong>End date:</strong> {{ project_name.end_date }}<br></div>
         <div><strong>Users:</strong></div> 
-        <div> {{ project.project.owner.first_name }} ({{ project.project.owner.email }}) </div>
+        <div> {{ project_name.owner.first_name }} ({{ project_name.owner.email }}) </div>
         {% for user in  project.project_members.users.all  %}
-            <div >{{  user.first_name }} ({{user.email}})<br></div>
+            <div >{{  project_name.user.first_name }} ({{project_name.user.email}})<br></div>
         {% endfor %}
-
         <br>
         <a href='{{ project_id }}/user_list'>
             <button>Add users</button> 
@@ -91,6 +90,16 @@
           <p>No Tasks are available.</p>
          {% endif %}
         </div>
+
+        <a href='/projects/{{ project_id }}/project_edit'>
+          <button>Edit Project</button>
+        </a>
+        <a href='/projects/{{ project_id }}/project_delete'>
+          <button>Delete Project</button>
+        </a>
+
+        <br><br><br>
+
     </div>
 
 
