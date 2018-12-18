@@ -18,25 +18,13 @@
         </div>
       </a>
 
-    <a href="/invite_user/"> <button>Want to invite someone who isn't a planman?</button></a>
-    {% if user_list %}
-    <h1>Users</h1>
+ 
     <form method="POST">
     {% csrf_token %}
-    <ul>
-    {% for user in user_list %}
-    <li>
-        <input type="checkbox" name='email' value='{{user.email}}'>
-       <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-       <h5>{{ user.email }} </h5>
-      
-    </li>
-    {% endfor %}
-    </ul>
-    <input type="submit" value="Add">
+    <div>Email of User You wish to Invite :<input type="text" name="invitee_email"></div>
+    <br>
+    <input type="submit" value="Invite (email will be sent out from your account for Invite)">
 </form>
-{% else %}
-    <p>No Users are available.</p>
-{% endif %}
+
 </body>
 </html>

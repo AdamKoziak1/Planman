@@ -4,3 +4,4 @@ from .models import Project,Task,Project_members
 admin.site.register(Project)
 admin.site.register(Task)
 admin.site.register(Project_members)
+
