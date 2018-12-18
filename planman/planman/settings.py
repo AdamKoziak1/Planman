@@ -31,7 +31,7 @@ SECRET_KEY = 'ef#boti-zfc!rnb6d9%-j!#g+#d64f^_(rjku@b-1%yw#y$q@6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['35.183.96.74','35.183.96.74.xip.io']
+ALLOWED_HOSTS = ['35.183.96.74','35.183.96.74.xip.io','localhost']
 
 
 # Application definition

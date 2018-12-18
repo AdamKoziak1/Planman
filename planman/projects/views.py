@@ -48,7 +48,7 @@ def homepage (request):
 @login_required
 def invite_new_user (request):
     if request.method == 'POST':
-        send_mail('Project Invite','I need you in my project! .',str(request.user.email),request.POST.getlist('invitee_email'),fail_silently=False,)
+        send_mail('Project Invite',request.user.first_name+" "+request.user.last_name+' needs you in his project! \n Sign in to Planman.ca so he can add you to the project.',str(request.user.email),request.POST.getlist('invitee_email'),fail_silently=True,)
         return redirect('/projects/')
 
     return render(request, 'projects/invite_user.html')
