@@ -33,3 +33,7 @@ class Task(models.Model):
 class Project_members(models.Model):
     users = models.ManyToManyField(User)
     project= models.ForeignKey(Project,on_delete=models.CASCADE)
+
+class Pending_invite(models.Model):
+    project = models.ManyToManyField(Project)
+    user_email=  models.CharField(max_length=300)

@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.db import transaction
+from django.core.mail import send_mail
 from .forms import Project_create,Task_form,Project_user
 
 
@@ -44,7 +45,17 @@ def all_users(request,project_number):
 def homepage (request):
    return render(request, 'projects/main.html')
 
-#not a webpage method, is just being used to create a project and project member in the same class
+@login_required
+def invite_new_user (request):
+    if request.method == 'POST':
+        send_mail('Project Invite','I need you in my project! .',str(request.user.email),request.POST.getlist('invitee_email'),fail_silently=False,)
+        return redirect('/projects/')
+
+    return render(request, 'projects/invite_user.html')
+
+
+#not a web
+# page method, is just being used to create a project and project member in the same class
 class Full_project:
     project = ''
     project_members = ''
