@@ -83,7 +83,7 @@ def projects_list (request):
 @login_required
 def tasks_list (request,project_number):
     task_list = Task.objects.filter(project= project_number)
-    context =  {"task_list" : task_list,"project_id" : project_number, "project_name" :Project.objects.filter(id = project_number)}
+    context =  {"task_list" : task_list,"project_id" : project_number, "project_name" :Project.objects.get(id = project_number)}
     return render(request, 'projects/tasks.html',context)
 
 

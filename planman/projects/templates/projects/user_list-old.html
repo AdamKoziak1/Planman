@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
+    <script src="main.js"></script>
+    <link rel="icon" href="{% static 'img/logo.png' %}">
+</head>
+<body>
+    <a href="/projects/">
+        <div id="title-logo">
+          <t class="logo-name">PlanMan</t>
+          <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
+        </div>
+      </a>
+
+    {% if user_list %}
+    <h1>Users</h1>
+    <form method="POST">
+    {% csrf_token %}
+    <ul>
+    {% for user in user_list %}
+    <li>
+        <input type="checkbox" name='email' value='{{user.email}}'>
+       <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+       <h5>{{ user.email }} </h5>
+      
+    </li>
+    {% endfor %}
+    </ul>
+    <input type="submit" value="Add">
+</form>
+{% else %}
+    <p>No Users are available.</p>
+{% endif %}
+</body>
+</html>

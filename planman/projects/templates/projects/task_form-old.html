@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
+</head>
+
+<body>
+        <div id="title-logo">
+                <t class="logo-name">PlanMan</t>
+                <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
+            </div>
+    <div >
+      <div >
+        <H3>Hi {{ user.email }}!</H3>
+        </div>
+    </div>
+    <form method="POST">
+     {% csrf_token %}
+     {{ task_form.as_p }}
+     <input type="submit" value="Save">
+    </form>
+    <a href="/projects/"><button>Cancel</button></a>
+</body>
