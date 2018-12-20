@@ -20,9 +20,11 @@
 	  <div class="container-contact2">
 		<div class="wrap-contact2">
 		  <form method="POST" class="contact2-form validate-form">
-				{% csrf_token %}
+				
 			<span class="contact2-form-title">Create a Task</span>
-			<div class="wrap-input2 validate-input" data-validate="Name is required">
+			{% csrf_token %}
+				{{ task_form.as_p }}
+		<!--	<div class="wrap-input2 validate-input" data-validate="Name is required">
 			  <input class="input2" type="text" name="Task Name">
 			  <span class="focus-input2" data-placeholder="Task Name">{{ form.name }}</span>
 			</div>
@@ -33,7 +35,7 @@
 			<div class="wrap-input2 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 			  <input class="input2" type="text" name="Cost">
 			  <span class="focus-input2" data-placeholder="Cost">{{ form.cost }}</span>
-			</div>
+			</div>-->
 			<div class="container-contact2-form-btn">
 			  <div class="wrap-contact2-form-btn">
 				<div class="contact2-form-bgbtn"></div>
@@ -44,7 +46,7 @@
 		  </form>
 		</div>
 	  </div>
-	</div>
+	</div> 
 
 
 
