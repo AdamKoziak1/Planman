@@ -22,7 +22,7 @@
         <form method="post">
             {% csrf_token %}
             <h1>Are you sure you want to delete <strong><b><i>{{ task.name }}</i></b></strong>? </h1>
-            <h2><u>You can not undo this.</u><br></h2>
+            <h2><u>You cannot undo this.</u><br></h2>
             <div class=delete-buttons>
                 <input type="submit" value="Delete">
     </form>
