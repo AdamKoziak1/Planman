@@ -17,7 +17,7 @@ class Project(models.Model):
     
 
 class Task(models.Model):
-    name = models.CharField(max_length=200,default = 'Untitled task ',blank=True)
+    name = models.CharField(max_length=200,default = 'Untitled task ',blank=True,)
     description = models.TextField(null=True,blank=True)
     cost = models.DecimalField(max_digits=19,decimal_places=2,null=True,blank=True,default=0)
     profit = models.DecimalField(max_digits=19,decimal_places=2,null=True,blank=True,default=0)

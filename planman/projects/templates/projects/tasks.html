@@ -50,10 +50,10 @@
         <div><strong>Users:</strong></div>
         <ul>
           {% for user in project_members.users.all  %}
-          <li>
+           <li>
             {{ user.first_name }} ({{user.email}})<br>
-          </li>
-      {% endfor %}
+           </li>
+          {% endfor %}
         </ul>
         
         <br>
