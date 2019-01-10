@@ -5,7 +5,7 @@
 	<title>Create a Project</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="{% static 'img/logo.png' %}"/>
+	<link rel="icon" type="image/png" href="{% static 'img/logo_t.png' %}"/>
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
@@ -25,7 +25,7 @@
 			{% for form_field in Project_create %}
 			<div class="wrap-input2 validate-input" data-validate="Name is required">
 			  <input class="input2" type="text" name="{{ form_field.name }}">
-			  <span class="focus-input2" data-placeholder="{{ form_field.name }}"></span>
+			  <span class="focus-input2" data-placeholder="{{ form_field.label }}"></span>
 			</div>
 			{% endfor %}
 			<div class="container-contact2-form-btn">
