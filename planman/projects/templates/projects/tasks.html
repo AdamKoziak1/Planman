@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image/png" href="{% static 'img/logo_t.png' %}"/>
+    <link rel="icon" type="image/png" href="{% static 'img/logo2.png' %}"/>
     <script src="main.js"></script>
 
     <title>{{ project_name.name }}</title>
@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">PlanMan</a>
-        <a class="navbar-brand" href="#"><img src="{% static '/img/logo_t.png' %}" width="40px" height="40px" alt="PlanMan Logo"></a>
+        <a class="navbar-brand" href="#"><img src="{% static '/img/logo2.png' %}" width="40px" height="40px" alt="PlanMan Logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,7 +46,7 @@
         <div class='profit'><strong>Profit: </strong>{{ project_name.profit }}</div>
         <div class='start-date'><strong>Start date:</strong> {{ project_name.start_date }}</div>
         <div class='end-date'><strong>End date:</strong> {{ project_name.end_date }}<br></div>
-        <div><strong>Project owner:</strong> {{ project_name.owner.first_name }} ({{ project_name.owner.email }})</div> 
+        <div><strong><br>Project owner:</strong> {{ project_name.owner.first_name }} ({{ project_name.owner.email }})</div> 
         <div><strong>Users:</strong></div>
         <ul>
           {% for user in project_members.users.all  %}
@@ -81,6 +81,8 @@
               <div><strong>Profit: </strong>{{ task.profit }}</div>
               <div><strong>Start date: </strong>{{ task.start_date }}</div>
               <div><strong>End date: </strong>{{ task.end_date }}</div>
+              <div><strong>Hours Remaining: </strong> {{ task.hours_to_finish }}</div>
+              <div><strong>Hours Completed: </strong> {{ task.hours_finished }}<br><br></div>
               <a href='{{ project_id }}/{{ task.id }}/task_edit'>
                 <button>Edit Task</button>
               </a>

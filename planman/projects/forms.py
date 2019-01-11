@@ -12,10 +12,10 @@ class Project_create(forms.ModelForm):
             'name': ('Task Name'),
             'owner': ('Project Owner'),
             'description': ('Description'),
-            'cost': ('Cost'),
-            'profit': ('Profit'),
-            'start_date': ('Start Date'),
-            'end_date': ('End Date'),
+            'cost': ('Cost (Number)'),
+            'profit': ('Profit (Number)'),
+            'start_date': ('Start Date (DD/MM/YYYY)'),
+            'end_date': ('End Date (DD/MM/YYYY)'),
         }
         exclude = ['owner']
 
@@ -26,12 +26,12 @@ class Task_form(forms.ModelForm):
         labels = {
             'name': ('Task Name'),
             'description': ('Description'),
-            'cost': ('Cost'),
-            'profit': ('Profit'),
-            'start_date': ('Start Date'),
-            'end_date': ('End Date'),
-            'hours_to_finish': ('Hours Remaining'),
-            'hours_finished': ('Hours Completed'),
+            'cost': ('Cost (Number)'),
+            'profit': ('Profit (Number)'),
+            'start_date': ('Start Date (DD/MM/YYYY)'),
+            'end_date': ('End Date (DD/MM/YYYY)'),
+            'hours_to_finish': ('Hours Remaining (Number)'),
+            'hours_finished': ('Hours Completed (Number)'),
             'project': ('Parent Project'),
             'parent_task': ('Parent Task'),
         }
