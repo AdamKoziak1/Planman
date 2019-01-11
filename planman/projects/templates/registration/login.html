@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 {% load static %}
-
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="{% static 'css/projects.css' %}" >
-</head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="{% static 'img/logo2.png' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
+</head>
 <body>
-    <div id="title-logo">
-        <t class="logo-name">PlanMan</t>
-        <img src="{% static 'img/logo.png' %}" width="75x" height="75px" alt="PlanMan Logo">
-    </div>
-  <div class="container">
-    <div class="row">
-     <br><br>
-     <div class="col m6 card-panel white offset-m3">
-       <h1>Become a planman</h1>
-       <h4>Signing in? That sounds like a plan!</h4>
-       <br>
-       <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
-        <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
-       </a>
-       <br>
-     </div>
-    </div>
-   </div>
-</body>
+
+	<div class="bg-contact2" style="background-image: url('images/bg-01.jpg');">
+	  <div class="container-contact2">
+		<div class="wrap-contact2">
+      <span class="contact2-form-title">Become a PlanMan</span>
+      <h5 style="text-align: center;">Signing in? That sounds like a plan!<br><br><br></h5>
+			
+			<div class="container-contact2-form-btn">
+			  <div class="wrap-contact2-form-btn">
+        <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
+          <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
+         </a>
+				</div>
+			  </div>
+			</div>
+		</div>
+	  </div>
+	</div> 
+
+
