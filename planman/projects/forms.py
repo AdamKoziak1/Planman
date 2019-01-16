@@ -10,7 +10,7 @@ class Project_create(forms.ModelForm):
         model = Project
         fields = ('name', 'owner', 'description', 'cost', 'profit', 'start_date', 'end_date',)
         labels = {
-            'name': ('Task Name'),
+            'name': ('Project Name'),
             'owner': ('Project Owner'),
             'description': ('Description'),
             'cost': ('Cost (Number)'),
