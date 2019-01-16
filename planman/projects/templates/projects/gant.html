@@ -36,7 +36,12 @@
     <script type="text/javascript">
     
     var list = {{ list|safe }};
-    yes = "{{ yes|safe }}";
+    var colwidths = []
+    for (var i in list){
+      colwidths.push(300)
+    }
+    console.log(list.length)
+    console.log(colwidths)
     data = [
         ['Mazda', 2001, 2000],
         ['Pegeout', 2010, 5000],
@@ -46,9 +51,11 @@
     
     $('#chart').jexcel({
         data:data,
-        colHeaders: [list, yes, 'Price' ],
-        colWidths: [ 300, 80, 100 ]
-    });
+        colHeaders: list,
+        colWidths: colwidths,
+       
+    }).setZoomFactor(200);
+    // $('#chart').jexcel();
     </script>
 </body>
 

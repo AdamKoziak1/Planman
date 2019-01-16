@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 from django.db import transaction
 from django.core.mail import send_mail
 from .forms import Project_create,Task_form,Project_user
-import datetime
+from datetime import datetime,date, timedelta
 
 
 def mainpage (request):
@@ -93,8 +93,20 @@ def tasks_list (request,project_number):
     return render(request, 'projects/tasks.html',context)
 
 @login_required
-def chart (request):
-    context = {"list" : Project.objects.get(id = 22).end_date,"yes":  datetime.datetime.now().date  }
+def chart (request,project_number):
+    d1 =  Project.objects.get(id = project_number).start_date
+    d2 =  Project.objects.get(id = project_number).end_date
+    for task in Task.objects.filter(project= project_number):
+        if task.start_date != None and task.start_date < d1:
+            d1 = task.start_date
+        if  task.end_date != None and task.end_date > d2:
+            d2 = task.end_date
+    
+    delta = d2 - d1         # timedelta
+    list=[]
+    for i in range(delta.days + 1):
+        list.append(str(d1 + timedelta(i)))
+    context = {"list" :list,"debugging":  list }
     return render(request,'projects/gant.html',context)
 
 
