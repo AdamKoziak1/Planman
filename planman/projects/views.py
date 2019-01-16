@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 from django.db import transaction
 from django.core.mail import send_mail
 from .forms import Project_create,Task_form,Project_user
-
+import datetime
 
 
 def mainpage (request):
@@ -91,6 +91,11 @@ def tasks_list (request,project_number):
     task_list = Task.objects.filter(project= project_number)
     context =  {"task_list" : task_list,"project_id" : project_number, "project_name" :Project.objects.get(id = project_number), 'project_members':Project_members.objects.get(project=Project.objects.get(id=project_number))}
     return render(request, 'projects/tasks.html',context)
+
+@login_required
+def chart (request):
+    context = {"list" : Project.objects.get(id = 22).end_date,"yes":  datetime.datetime.now().date  }
+    return render(request,'projects/gant.html',context)
 
 
 @login_required
