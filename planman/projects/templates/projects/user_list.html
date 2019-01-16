@@ -48,12 +48,14 @@
             <div class="row">
               {% csrf_token %}
                 {% for user in user_list %}
-                  <div class="col-lg-4 col-sm-6 portfolio-item">
+                  <div class="col-lg-4 col-sm-6">
+                      <div class="portfolio-item">
                     <div class="card h-100">
                       <div class="card-body">
                         <input type="checkbox" name='email' value='{{user.email}}'>
                         <h4><strong>{{ user.first_name }} {{ user.last_name }}</strong></h4>
                         <h5><i>{{ user.email }}</i> </h5>
+                      </div>
                       </div>
                     </div>
                   </div>

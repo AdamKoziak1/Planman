@@ -24,9 +24,17 @@
 			{% csrf_token %}
 			{% for form_field in Project_create %}
 			<div class="wrap-input2 validate-input" data-validate="Name is required">
-			  <input class="input2" type="text" name="{{ form_field.name }}">
-			  <span class="focus-input2" data-placeholder="{{ form_field.label }}"></span>
+					
+				<span class="focus-input2" data-placeholder="{{ form_field.label }}"> </span>
+		
+				<input class="input2" type="text" name="{{ form_field.name }}" value="{{ form_field.value|default_if_none:'' }}">
+
 			</div>
+			{% for error in form_field.errors %}
+						<br>
+						<div style="color: red"> <strong>{{ error }}</strong></div> 
+						<br>
+        {% endfor %}
 			{% endfor %}
 			<div class="container-contact2-form-btn">
 			  <div class="wrap-contact2-form-btn">

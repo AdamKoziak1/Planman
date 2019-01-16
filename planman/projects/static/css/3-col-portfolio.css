@@ -7,18 +7,28 @@
 
  body {
   padding-top: 54px;
+  /* Background pattern from Toptal Subtle Patterns */
+  background-image: url(../img/prism.png) ;
 }
 
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
+    color: white;
   }
 }
 
 .portfolio-item {
   margin-bottom: 30px;
+  border-style: solid;
+  border-color: rgb(87, 87, 87);
+  border-width: 5px;
+  color: black;
 }
 
 .pagination {
   margin-bottom: 30px;
+}
+.error{
+  color: red;
 }

@@ -5,6 +5,7 @@ from projects.models import Project,Task,Project_members
 from django import forms
 
 class Project_create(forms.ModelForm):
+    #start_date = DateField(input_formats=settings.DATE_INPUT_FORMATS)
     class Meta:
         model = Project
         fields = ('name', 'owner', 'description', 'cost', 'profit', 'start_date', 'end_date',)
