@@ -27,7 +27,7 @@
 					
 				<span class="focus-input2" data-placeholder="{{ form_field.label }}"> </span>
 		
-				<input class="input2" type="text" name="{{ form_field.name }}" placeholder="{{ form_field.value|default_if_none:'' }}">
+				<input class="input2" type="text" name="{{ form_field.name }}" value="{{ form_field.value|default_if_none:'' }}">
 
 			</div>
 			{% for error in form_field.errors %}

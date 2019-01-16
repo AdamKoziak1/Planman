@@ -26,17 +26,23 @@ def debuging(request, message):
 
 
 def all_users(request,project_number):
+    project_member_object = Project_members.objects.get(project = Project.objects.get(id = project_number))
     if request.method == 'POST':
-        project_member_object = Project_members.objects.get(project = Project.objects.get(id = project_number))
         for user_email in request.POST.getlist('email'):
-            if user_email == Project.objects.get(id = project_number).owner.email :
+            if user_email == Project.objects.get(id = project_number).owner.email:
                 continue
             else:
                 project_member_object.users.add(User.objects.get(email = user_email))
         project_member_object.save()
         #return debuging(request, project_member_object.users.all())
         return redirect('/projects/')
-    user_list = User.objects.order_by('first_name')
+    full_list = User.objects.order_by('first_name')
+    user_list = []
+    for email in full_list:
+        if email.email == Project.objects.get(id = project_number).owner.email or email in project_member_object.users.all() :
+            continue
+        else:
+            user_list.append(email)
     context = {'user_list' : user_list}
     return render(request, 'projects/user_list.html', context)
 
