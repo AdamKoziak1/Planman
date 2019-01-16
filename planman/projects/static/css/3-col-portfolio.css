@@ -9,12 +9,14 @@
   padding-top: 54px;
   /* Background pattern from Toptal Subtle Patterns */
   background-image: url(../img/prism.png) ;
+  color: white;
 }
 
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
     color: white;
+    background-image: url(../img/prism.png) ;
   }
 }
 
