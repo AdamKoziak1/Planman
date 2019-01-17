@@ -203,3 +203,7 @@ def task_delete(request,project_number,task_number):
     else:
         return render(request,'projects/delete_task.html',context)
 
+
+def clean():
+    task_list = Tasks.objects.all()
+    
