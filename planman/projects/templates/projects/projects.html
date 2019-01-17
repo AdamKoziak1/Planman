@@ -67,13 +67,16 @@
                 <div><strong>Profit: </strong>{{ project.project.profit }}</div>
                 {% if project.owner %}
                 <a href='/projects/{{ project.project.id }}/project_edit'>
-                  <button>Edit Project</button>
+                  <div class="button">Edit Project</div>
                 </a>
                 <a href='/projects/{{ project.project.id }}/project_delete'>
-                  <button>Delete Project</button>
+                  <div class="button">Delete Project</div>
+                  
                 </a>
-                {% else %}
                 <br>
+                {% else %}
+                <div class="button"><strong>Project Owner: </strong>{{ project.project.owner.first_name }}</div>
+                <div class="blank">    </div>
                 {% endif %}
               </div>
             </div>
