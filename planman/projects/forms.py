@@ -36,6 +36,8 @@ class Task_form(forms.ModelForm):
             'parent_task': ('Parent Task'),
         }
         exclude = ['project']
+        
+
 class Project_user(forms.ModelForm):
     class Meta:
         model = Project_members

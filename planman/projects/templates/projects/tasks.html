@@ -59,7 +59,7 @@
            </li>
           {% endfor %}
         </ul>
-        
+        {% if owner %}
         <br>
         <a href='{{ project_id }}/user_list'>
             <button>Add users</button> 
@@ -71,6 +71,7 @@
         </a>
 
         <br>
+        {% endif %}
         <br>
 
         <div class="row">
@@ -88,12 +89,15 @@
               <div><strong>End date: </strong>{{ task.end_date }}</div>
               <div><strong>Hours Remaining: </strong> {{ task.hours_to_finish }}</div>
               <div><strong>Hours Completed: </strong> {{ task.hours_finished }}<br><br></div>
+              
               <a href='{{ project_id }}/{{ task.id }}/task_edit'>
                 <button>Edit Task</button>
               </a>
+              {% if owner %}
               <a href='{{ project_id }}/{{ task.id }}/task_delete'>
                 <button>Delete Task</button>
               </a>
+              {% endif %}
              </div>
             </div>
            </div>
@@ -103,14 +107,14 @@
           <p>No Tasks are available.</p>
          {% endif %}
         </div>
-
+        {% if owner %}
         <a href='/projects/{{ project_id }}/project_edit'>
           <button>Edit Project</button>
         </a>
         <a href='/projects/{{ project_id }}/project_delete'>
           <button>Delete Project</button>
         </a>
-
+        {% endif %}
         <br><br><br>
 
     </div>
