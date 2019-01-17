@@ -95,13 +95,14 @@ def projects_list (request):
 
 @login_required
 def tasks_list (request,project_number):
+    
     task_list = Task.objects.filter(project= project_number)
     owner = ''
     if request.user.email == Project.objects.get(id = project_number).owner.email:
         owner = True
     else:
         owner = False
-
+    
     context =  {"owner":owner,"task_list" : task_list,"project_id" : project_number, "project_name" :Project.objects.get(id = project_number), 'project_members':Project_members.objects.get(project=Project.objects.get(id=project_number))}
     return render(request, 'projects/tasks.html',context)
 
@@ -204,6 +205,4 @@ def task_delete(request,project_number,task_number):
         return render(request,'projects/delete_task.html',context)
 
 
-def clean():
-    task_list = Tasks.objects.all()
-    
+

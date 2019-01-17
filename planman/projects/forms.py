@@ -23,7 +23,7 @@ class Project_create(forms.ModelForm):
 class Task_form(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('name', 'description', 'cost', 'profit', 'start_date', 'end_date', 'hours_to_finish', 'hours_finished', 'project', 'parent_task')
+        fields = ('name', 'description', 'cost', 'profit', 'start_date', 'end_date', 'hours_to_finish', 'hours_finished', 'project')
         labels = {
             'name': ('Task Name'),
             'description': ('Description'),
@@ -34,7 +34,6 @@ class Task_form(forms.ModelForm):
             'hours_to_finish': ('Hours Remaining (Number)'),
             'hours_finished': ('Hours Completed (Number)'),
             'project': ('Parent Project'),
-            'parent_task': ('Parent Task'),
         }
         exclude = ['project']
 class Project_user(forms.ModelForm):
