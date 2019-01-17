@@ -67,9 +67,14 @@ def invite_new_user (request):
 class Full_project:
     project = ''
     project_members = ''
-    def __init__(self,project,project_members):
+    owner = ''
+    def __init__(self,project,project_members,email):
         self.project=project
         self.project_members=project_members
+        if email == self.project.owner.email:
+            self.owner = True
+        else:
+            self.owner = False
 
 
 
@@ -80,7 +85,7 @@ def projects_list (request):
     full_projects = []
     for project in project_list:
         if request.user.email == project.owner.email or request.user in Project_members.objects.get(project= project).users.all():
-            full_projects.append(Full_project(project,Project_members.objects.get(project= project)))
+            full_projects.append(Full_project(project,Project_members.objects.get(project= project),request.user.email))
     #return debuging(request, full_projects[0].project_members.users.all())
     context =  {"project_list" : full_projects}
     return render(request, 'projects/projects.html',context)
@@ -91,13 +96,23 @@ def projects_list (request):
 @login_required
 def tasks_list (request,project_number):
     task_list = Task.objects.filter(project= project_number)
-    context =  {"task_list" : task_list,"project_id" : project_number, "project_name" :Project.objects.get(id = project_number), 'project_members':Project_members.objects.get(project=Project.objects.get(id=project_number))}
+    owner = ''
+    if request.user.email == Project.objects.get(id = project_number).owner.email:
+        owner = True
+    else:
+        owner = False
+
+    context =  {"owner":owner,"task_list" : task_list,"project_id" : project_number, "project_name" :Project.objects.get(id = project_number), 'project_members':Project_members.objects.get(project=Project.objects.get(id=project_number))}
     return render(request, 'projects/tasks.html',context)
 
 @login_required
 def chart (request,project_number):
-    d1 =  Project.objects.get(id = project_number).start_date
-    d2 =  Project.objects.get(id = project_number).end_date
+    task_list = Task.objects.filter(project= project_number)
+    for task in Task.objects.filter(project= project_number):
+        if task.start_date != None:
+            d1 = task.start_date
+        if  task.end_date != None:
+            d2 = task.end_date
     for task in Task.objects.filter(project= project_number):
         if task.start_date != None and task.start_date < d1:
             d1 = task.start_date
@@ -111,7 +126,8 @@ def chart (request,project_number):
     dates=[]
     for i in range(delta.days + 1):
         dates.append(str(d1 + timedelta(i)))
-    context = {"list" :dates,"debugging":  task_json,"tasks" : task_json }
+    dates.append("None")
+    context = {"list" :dates,"debugging":  task_json,"tasks" : task_json,"task_list" : task_list,"project_id" : project_number, "project_name" :Project.objects.get(id = project_number), 'project_members':Project_members.objects.get(project=Project.objects.get(id=project_number)) }
     return render(request,'projects/gant.html',context)
 
 

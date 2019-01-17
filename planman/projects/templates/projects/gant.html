@@ -23,6 +23,50 @@
 
 <body>
   
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/projects">PlanMan</a>
+      <a class="navbar-brand" href="#"><img src="{% static '/img/logo2.png' %}" width="40px" height="40px" alt="PlanMan Logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Back to Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Log out</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/projects/{{project_id}}">Tasks view</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+      <h1 class="my-4">{{ project_name.name }}</h1>
+      <div class='desc'><strong>Description: </strong>{{ project_name.description }}</div>
+      <div class='cost'><strong><br>Cost:</strong> {{ project_name.cost }}</div>
+      <div class='profit'><strong>Profit: </strong>{{ project_name.profit }}</div>
+      <div><strong><br>Project owner:</strong> {{ project_name.owner.first_name }} ({{ project_name.owner.email }})</div> 
+      <div><strong>Users:</strong></div>
+      <ul>
+        {% for user in project_members.users.all  %}
+         <li>
+          {{ user.first_name }} ({{user.email}})<br>
+         </li>
+        {% endfor %}
+      </ul>
+      
+      <br>
+      <a href='{{ project_id }}/user_list'>
+          <button>Add users</button> 
+      </a>
+      <br>
+      <br>
     <div class="chart">
                     
     <div id="chart"></div>
@@ -37,8 +81,15 @@
     console.log(tasks)
 
     var colwidths = []
+    var column_settings = []
     for (var i in list){
-      colwidths.push(90)
+      if (list.length<8){
+        colwidths.push(300)
+      }else{
+        colwidths.push(90)
+      }
+      
+      column_settings.push({ type:'text', wordWrap:true, readOnly:true })
     }
   
     data = [
@@ -49,6 +100,7 @@
         data:data,
         colHeaders: list,
         colWidths: colwidths,
+        columns: column_settings,
         minDimensions:[list.length,tasks.length],
         tableOverflow:true,
        
@@ -58,7 +110,7 @@
         // Number formating
 
         var today_date = 0;
-
+        
         for(var task_index in tasks){
           var min_col = 0;
           var max_col = -1;
@@ -74,11 +126,18 @@
                 write_cell(task_index,$(cell).html(tasks[task_index][0]));
               }
               for (duration = 0; duration <= max_col-min_col; duration++) {
-                  color_cell(task_index,(parseInt(min_col+duration)),'blue');
+                  color_cell(task_index,(parseInt(min_col+duration)),'green');
                 }
                 break;
               }
             }
+          if (max_col-min_col <= -1){
+            if (col == parseInt(list.length-1) && row == parseInt(task_index)){
+              $(cell).html(tasks[task_index][0]); 
+              $(cell).css('background-color', 'orange');
+              $(cell).css('color', 'black');
+            }
+          }
           }
         
         
@@ -87,12 +146,14 @@
         function write_cell(row_num,text){
             if (row != row_num){
               $(cell).html(text); 
+              $(cell).css('color', 'black');
             }
         }
         function color_cell(row_num,col_num,coloring){
             if (row == row_num){
               if (col == col_num){
-              $(cell).css('background-color', '#edf3ff');
+              $(cell).css('background-color', coloring);
+              $(cell).css('color', 'black');
             }
         }
         }

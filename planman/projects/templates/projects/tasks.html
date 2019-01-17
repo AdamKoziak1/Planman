@@ -30,7 +30,17 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/home">Back to Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Log out</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/projects/{{project_id}}/chart">Gantchart mode</a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -40,8 +50,6 @@
         <div class='desc'><strong>Description: </strong>{{ project_name.description }}</div>
         <div class='cost'><strong><br>Cost:</strong> {{ project_name.cost }}</div>
         <div class='profit'><strong>Profit: </strong>{{ project_name.profit }}</div>
-        <div class='start-date'><strong>Start date:</strong> {{ project_name.start_date }}</div>
-        <div class='end-date'><strong>End date:</strong> {{ project_name.end_date }}<br></div>
         <div><strong><br>Project owner:</strong> {{ project_name.owner.first_name }} ({{ project_name.owner.email }})</div> 
         <div><strong>Users:</strong></div>
         <ul>
