@@ -11,6 +11,8 @@ from django.db import transaction
 from django.core.mail import send_mail
 from .forms import Project_create,Task_form,Project_user
 from datetime import datetime,date, timedelta
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 def mainpage (request):
@@ -102,11 +104,14 @@ def chart (request,project_number):
         if  task.end_date != None and task.end_date > d2:
             d2 = task.end_date
     
+    tasks = Task.objects.filter(project = project_number).values_list('name','start_date','end_date')
+    task_json = json.dumps(list(tasks), cls=DjangoJSONEncoder)
+    
     delta = d2 - d1         # timedelta
-    list=[]
+    dates=[]
     for i in range(delta.days + 1):
-        list.append(str(d1 + timedelta(i)))
-    context = {"list" :list,"debugging":  list }
+        dates.append(str(d1 + timedelta(i)))
+    context = {"list" :dates,"debugging":  task_json,"tasks" : task_json }
     return render(request,'projects/gant.html',context)
 
 

@@ -22,40 +22,111 @@
   </head>
 
 <body>
-    <div class="container">
-    <div class="row">
-    <div class="col-lg-12 col-sm-12">
+  
     <div class="chart">
                     
     <div id="chart"></div>
 </div>
-</div>    
-</div>
-</div>
+
 
     <script type="text/javascript">
     
     var list = {{ list|safe }};
+    var debugmsg = {{ debugging|safe }};
+    var tasks = {{ tasks|safe }};
+    console.log(tasks)
+
     var colwidths = []
     for (var i in list){
-      colwidths.push(300)
+      colwidths.push(90)
     }
-    console.log(list.length)
-    console.log(colwidths)
+  
     data = [
-        ['Mazda', 2001, 2000],
-        ['Pegeout', 2010, 5000],
-        ['Honda Fit', 2009, 3000],
-        ['Honda CRV', 2010, 6000],
+        [''],
     ];
     
     $('#chart').jexcel({
         data:data,
         colHeaders: list,
         colWidths: colwidths,
+        minDimensions:[list.length,tasks.length],
+        tableOverflow:true,
        
-    }).setZoomFactor(200);
-    // $('#chart').jexcel();
+    });
+    $('#chart').jexcel('updateSettings', {
+    table: function (instance, cell, col, row, val, id) {
+        // Number formating
+
+        var today_date = 0;
+
+        for(var task_index in tasks){
+          var min_col = 0;
+          var max_col = -1;
+        for (var date_index in list){
+            if(tasks[task_index][1]==list[date_index]){
+              min_col = date_index;
+            }
+            if(tasks[task_index][2]==list[date_index]){
+              max_col = date_index;
+            }
+            if (max_col-min_col > -1){
+              if (col == min_col){
+                write_cell(task_index,$(cell).html(tasks[task_index][0]));
+              }
+              for (duration = 0; duration <= max_col-min_col; duration++) {
+                  color_cell(task_index,(parseInt(min_col+duration)),'blue');
+                }
+                break;
+              }
+            }
+          }
+        
+        
+
+
+        function write_cell(row_num,text){
+            if (row != row_num){
+              $(cell).html(text); 
+            }
+        }
+        function color_cell(row_num,col_num,coloring){
+            if (row == row_num){
+              if (col == col_num){
+              $(cell).css('background-color', '#edf3ff');
+            }
+        }
+        }
+        
+        // if ($('#chart').jexcel('getHeader', 2) == list[2]) {
+        //     // Get text
+           
+        //     txt = $(cell).text();
+        //     // Format text
+        //     txt = numeral(txt).format('0,0.00');
+        //     // Update cell value
+        //     $(cell).html(' $ ' + txt);
+        // }
+
+        // // Odd row colours
+        // if (row % 2) {
+        //     $(cell).css('background-color', '#edf3ff');
+        // }
+
+        // // Remove controls for the last row
+        // if (row == 9) {
+        //     if (col < 3) {
+        //         $(cell).html('');
+        //     } 
+
+        //     if (col == 2) {
+        //         $(cell).html('Total');
+        //     }
+
+        //     $(cell).css('background-color', '#f46e42');
+        //     $(cell).css('color', '#fff');
+        // }
+    }
+});
     </script>
 </body>
 
