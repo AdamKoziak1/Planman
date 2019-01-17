@@ -34,6 +34,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/home">Back to Home</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Log out</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -62,14 +65,14 @@
                 <div><strong>Description: </strong>{{ project.project.description }}</div>
                 <div><strong>Cost:</strong> {{ project.project.cost }}</div>
                 <div><strong>Profit: </strong>{{ project.project.profit }}</div>
-                <div><strong>Start date:</strong> {{ project.project.start_date }}</div>
-                <div><strong>End date:</strong> {{ project.project.end_date }}<br><br></div>
+                {% if project.owner %}
                 <a href='/projects/{{ project.project.id }}/project_edit'>
                   <button>Edit Project</button>
                 </a>
                 <a href='/projects/{{ project.project.id }}/project_delete'>
                   <button>Delete Project</button>
                 </a>
+                {% endif %}
               </div>
             </div>
           </div>

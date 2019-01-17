@@ -25,7 +25,13 @@
 			{% for form_field in Project_create %}
 			<div class="wrap-input2 validate-input" data-validate="Name is required">
 				<span class="focus-input2" data-placeholder="{{ form_field.label }}"> </span>
+<<<<<<< HEAD
 				<input class="input2" type="text" name="{{ form_field.name }}" placeholder="{{ form_field.value|default_if_none:'' }}">
+=======
+		
+				<input class="input2" type="text" name="{{ form_field.name }}" value="{{ form_field.value|default_if_none:'' }}">
+
+>>>>>>> 752fc66275d583701395ba15a27eb216af34c290
 			</div>
 			{% for error in form_field.errors %}
 						<br>
