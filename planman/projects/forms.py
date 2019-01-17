@@ -8,14 +8,15 @@ class Project_create(forms.ModelForm):
     #start_date = DateField(input_formats=settings.DATE_INPUT_FORMATS)
     class Meta:
         model = Project
-        fields = ('name', 'owner', 'description', 'cost', 'profit',)
+        fields = ('name', 'owner', 'description', 'cost', 'profit', 'start_date', 'end_date',)
         labels = {
             'name': ('Project Name'),
             'owner': ('Project Owner'),
             'description': ('Description'),
             'cost': ('Cost (Number)'),
             'profit': ('Profit (Number)'),
-            
+            'start_date': ('Start Date (DD/MM/YYYY)'),
+            'end_date': ('End Date (DD/MM/YYYY)'),
         }
         exclude = ['owner']
 
@@ -36,8 +37,6 @@ class Task_form(forms.ModelForm):
             'parent_task': ('Parent Task'),
         }
         exclude = ['project']
-        
-
 class Project_user(forms.ModelForm):
     class Meta:
         model = Project_members
