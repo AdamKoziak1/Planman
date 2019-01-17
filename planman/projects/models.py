@@ -10,6 +10,8 @@ class Project(models.Model):
     description = models.TextField(null=True,blank=True)
     cost = models.DecimalField(max_digits=19,decimal_places=2,null=True,blank=True,default=0)
     profit = models.DecimalField(max_digits=19,decimal_places=2,null=True,blank=True,default=0)
+    start_date = models.DateField(null=True,blank=True)
+    end_date = models.DateField(null=True,blank=True)
     def __str__(self):
         return self.name
     
