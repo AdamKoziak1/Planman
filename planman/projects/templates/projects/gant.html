@@ -67,10 +67,11 @@
       </a>
       <br>
       <br>
+      </div>
     <div class="chart">
                     
-    <div id="chart"></div>
-</div>
+    <div id="chart" style="padding-left:200px"></div>
+
 
 
     <script type="text/javascript">
@@ -115,18 +116,20 @@
           var min_col = 0;
           var max_col = -1;
         for (var date_index in list){
+            
             if(tasks[task_index][1]==list[date_index]){
               min_col = date_index;
             }
             if(tasks[task_index][2]==list[date_index]){
               max_col = date_index;
             }
-            if (max_col-min_col > -1){
-              if (col == min_col){
-                write_cell(task_index,$(cell).html(tasks[task_index][0]));
-              }
+            
+            if ( (max_col-min_col) > -1){
+             
+               
               for (duration = 0; duration <= max_col-min_col; duration++) {
-                  color_cell(task_index,(parseInt(min_col+duration)),'green');
+                //console.log("col = "+ col + " min col is " + min_col + " task is "+ tasks[task_index][0] + " max col is "+ max_col  + " row is "+ row + " task_row  is "+ task_index)
+                  color_cell(task_index,(parseInt(min_col)+parseInt(duration)),'green',tasks[task_index][0]);
                 }
                 break;
               }
@@ -143,15 +146,12 @@
         
 
 
-        function write_cell(row_num,text){
-            if (row != row_num){
-              $(cell).html(text); 
-              $(cell).css('color', 'black');
-            }
-        }
-        function color_cell(row_num,col_num,coloring){
+       
+        function color_cell(row_num,col_num,coloring,text){
+          console.log("col = "+ col + " col_num is " + col_num + " task is "+ text + " row is "+ row + " task_row  is "+ row_num)
             if (row == row_num){
               if (col == col_num){
+                $(cell).html(text); 
               $(cell).css('background-color', coloring);
               $(cell).css('color', 'black');
             }
