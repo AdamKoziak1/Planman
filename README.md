@@ -47,5 +47,7 @@ $ pip install django-admin
 
 $ pip install social-auth-app-django
 
+$ pip install python-social-auth
+
 $ pip install psycopg2
 
