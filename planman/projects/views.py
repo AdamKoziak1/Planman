@@ -14,19 +14,19 @@ from datetime import datetime,date, timedelta
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 
-
+# redirects people going to the main page if logged in
 def mainpage (request):
     if request.user.is_authenticated:
         return redirect('/projects/')
     else:
         return render(request, 'projects/main.html')
 
-
+# used for debuging as print doesnt work when running a django server
 def debuging(request, message):
     message = {'message' : message}
     return render(request, 'projects/debug.html',message)
 
-
+#this method goes through all the users and adds them the list to be displayed if they arent part of the project yet
 def all_users(request,project_number):
     project_member_object = Project_members.objects.get(project = Project.objects.get(id = project_number))
     if request.method == 'POST':
@@ -36,7 +36,6 @@ def all_users(request,project_number):
             else:
                 project_member_object.users.add(User.objects.get(email = user_email))
         project_member_object.save()
-        #return debuging(request, project_member_object.users.all())
         return redirect('/projects/')
     full_list = User.objects.order_by('first_name')
     user_list = []
@@ -49,10 +48,12 @@ def all_users(request,project_number):
     return render(request, 'projects/user_list.html', context)
 
 
-
+#shows the home page
 def homepage (request):
    return render(request, 'projects/main.html')
 
+
+# sends email to user when they are invited
 @login_required
 def invite_new_user (request):
     if request.method == 'POST':
@@ -62,8 +63,7 @@ def invite_new_user (request):
     return render(request, 'projects/invite_user.html')
 
 
-#not a web
-# page method, is just being used to create a project and project member in the same class
+#not a webpage method, is just being used to create a project and project member in the same class
 class Full_project:
     project = ''
     project_members = ''
@@ -78,7 +78,7 @@ class Full_project:
 
 
 
-
+#displays all the projects the user is a part off
 @login_required
 def projects_list (request): 
     project_list = Project.objects.order_by('id')
@@ -92,12 +92,12 @@ def projects_list (request):
 
 
 
-
+#displays tasks in project
 @login_required
 def tasks_list (request,project_number):
-    
     task_list = Task.objects.filter(project= project_number)
     owner = ''
+    #checks if user is the owner of the project to change the layout of the page
     if request.user.email == Project.objects.get(id = project_number).owner.email:
         owner = True
     else:
@@ -106,9 +106,15 @@ def tasks_list (request,project_number):
     context =  {"owner":owner,"task_list" : task_list,"project_id" : project_number, "project_name" :Project.objects.get(id = project_number), 'project_members':Project_members.objects.get(project=Project.objects.get(id=project_number))}
     return render(request, 'projects/tasks.html',context)
 
+
+
 @login_required
 def chart (request,project_number):
+    #finds the dates for all the tasks as well as other task info 
+    #
     task_list = Task.objects.filter(project= project_number)
+
+    #looks for the earliest start date and the lastest end date for chart scaleing 
     for task in Task.objects.filter(project= project_number):
         if task.start_date != None:
             d1 = task.start_date
@@ -121,6 +127,7 @@ def chart (request,project_number):
             d2 = task.end_date
     
     tasks = Task.objects.filter(project = project_number).values_list('name','start_date','end_date')
+    #Turns task info into jason so that it can be read with js easier
     task_json = json.dumps(list(tasks), cls=DjangoJSONEncoder)
     
     delta = d2 - d1         # timedelta
@@ -131,7 +138,7 @@ def chart (request,project_number):
     context = {"list" :dates,"debugging":  task_json,"tasks" : task_json,"task_list" : task_list,"project_id" : project_number, "project_name" :Project.objects.get(id = project_number), 'project_members':Project_members.objects.get(project=Project.objects.get(id=project_number)) }
     return render(request,'projects/gant.html',context)
 
-
+#project creation page
 @login_required
 def project_create(request):
     if request.method == 'POST':
@@ -151,6 +158,7 @@ def project_create(request):
         print("BANANA ERROR")
     return render(request,'projects/create_project.html',{'Project_create':form_project, 'Project_user':form_user})
     
+#project editing page
 @login_required
 def project_edit(request,project_number):
     project = get_object_or_404(Project,id=project_number)
@@ -160,6 +168,7 @@ def project_edit(request,project_number):
         return redirect('/projects/')
     return render(request,'projects/create_project.html',{'Project_create':form})
 
+#task creation page
 @login_required
 def task_create(request,project_number):
     if request.method == 'POST':
@@ -174,6 +183,7 @@ def task_create(request,project_number):
         print("BANANA")
     return render(request,'projects/task_form.html',{'task_form':form})
 
+#task editing page
 @login_required
 def task_edit(request,project_number,task_number):
     task = get_object_or_404(Task,id=task_number)
@@ -183,6 +193,7 @@ def task_edit(request,project_number,task_number):
         return redirect('/projects/'+str(project_number))
     return render(request,'projects/task_form.html',{'task_form':form})
 
+#project delete page
 @login_required
 def project_delete(request,project_number):
     project = get_object_or_404(Project,id=project_number)
@@ -193,6 +204,8 @@ def project_delete(request,project_number):
     else:
         return render(request,'projects/delete_project.html',context)
 
+
+#task delete page
 @login_required
 def task_delete(request,project_number,task_number):
     task = get_object_or_404(Task,id=task_number)

@@ -10,12 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'planmanwebsite@gmail.com'
-EMAIL_HOST_PASSWORD = 'Planning@1234'
-EMAIL_PORT = 587
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -152,6 +146,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'planmanwebsite@gmail.com'
+EMAIL_HOST_PASSWORD = 'Planning@1234'
+EMAIL_PORT = 587
 
 
 # Internationalization

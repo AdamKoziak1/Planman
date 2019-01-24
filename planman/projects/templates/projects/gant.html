@@ -75,14 +75,20 @@
 
 
     <script type="text/javascript">
-    
+    // the javascript had to go here as I could not figure out how to move the django data to a diffrent js script
+    // this code if for the gantt chart 
+    // written by Youssef
+
     var list = {{ list|safe }};
     var debugmsg = {{ debugging|safe }};
     var tasks = {{ tasks|safe }};
+    // just for debugging
     console.log(tasks)
 
+    
     var colwidths = []
     var column_settings = []
+    
     for (var i in list){
       if (list.length<8){
         colwidths.push(300)
@@ -96,7 +102,7 @@
     data = [
         [''],
     ];
-    
+    //init the chart
     $('#chart').jexcel({
         data:data,
         colHeaders: list,
@@ -106,12 +112,11 @@
         tableOverflow:true,
        
     });
+    //updating the chart with tasks 
     $('#chart').jexcel('updateSettings', {
     table: function (instance, cell, col, row, val, id) {
-        // Number formating
-
-        var today_date = 0;
         
+        //for each task it creates a new row and checks where to place the task on the chart    
         for(var task_index in tasks){
           var min_col = 0;
           var max_col = -1;
@@ -123,18 +128,16 @@
             if(tasks[task_index][2]==list[date_index]){
               max_col = date_index;
             }
-            
+            //checks if the end date is after the start date
             if ( (max_col-min_col) > -1){
-             
-               
               for (duration = 0; duration <= max_col-min_col; duration++) {
-                //console.log("col = "+ col + " min col is " + min_col + " task is "+ tasks[task_index][0] + " max col is "+ max_col  + " row is "+ row + " task_row  is "+ task_index)
                   color_cell(task_index,(parseInt(min_col)+parseInt(duration)),'green',tasks[task_index][0]);
                 }
                 break;
               }
             }
           if (max_col-min_col <= -1){
+            //if the task has invalid dates just places it in the none column 
             if (col == parseInt(list.length-1) && row == parseInt(task_index)){
               $(cell).html(tasks[task_index][0]); 
               $(cell).css('background-color', 'orange');
@@ -146,46 +149,19 @@
         
 
 
-       
+       // colors cell and adds text 
         function color_cell(row_num,col_num,coloring,text){
-          console.log("col = "+ col + " col_num is " + col_num + " task is "+ text + " row is "+ row + " task_row  is "+ row_num)
+          
             if (row == row_num){
               if (col == col_num){
+                console.log("col = "+ col + " col_num is " + col_num + " task is "+ text + " row is "+ row + " task_row  is "+ row_num)
                 $(cell).html(text); 
               $(cell).css('background-color', coloring);
               $(cell).css('color', 'black');
             }
         }
         }
-        
-        // if ($('#chart').jexcel('getHeader', 2) == list[2]) {
-        //     // Get text
-           
-        //     txt = $(cell).text();
-        //     // Format text
-        //     txt = numeral(txt).format('0,0.00');
-        //     // Update cell value
-        //     $(cell).html(' $ ' + txt);
-        // }
-
-        // // Odd row colours
-        // if (row % 2) {
-        //     $(cell).css('background-color', '#edf3ff');
-        // }
-
-        // // Remove controls for the last row
-        // if (row == 9) {
-        //     if (col < 3) {
-        //         $(cell).html('');
-        //     } 
-
-        //     if (col == 2) {
-        //         $(cell).html('Total');
-        //     }
-
-        //     $(cell).css('background-color', '#f46e42');
-        //     $(cell).css('color', '#fff');
-        // }
+       
     }
 });
     </script>
