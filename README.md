@@ -40,9 +40,9 @@ This page is there to ensure that the user is certain they want to delete the ta
 
 
 
-
 # Requirements :
 $ pip install django
 $ pip install django-admin
 $ pip install social-auth-app-django
 $ pip install psycopg2
+
