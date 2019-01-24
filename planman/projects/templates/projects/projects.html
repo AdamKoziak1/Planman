@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="{% static 'img/logo2.png' %}"/>
+    <script src="main.js"></script>
+
+    <title>Your Projects</title>
+
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/3-col-portfolio.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">PlanMan</a>
+        <a class="navbar-brand" href="#"><img src="{% static '/img/logo2.png' %}" width="40px" height="40px" alt="PlanMan Logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/home">Back to Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <h1 class="my-4">Your Projects</h1>
+
+      <a href="/project_create">
+         <button>Create Project</button>
+      </a>
+      <br>
+      <br>
+
+      <div class="row">
+        {% if project_list %}
+          {% for project in project_list %}
+          <div class="col-lg-4 col-sm-6">
+            <div class="portfolio-item">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href={{ project.project.id }}>{{ project.project.name }}</a>
+                </h4>
+                <div><strong>Description: </strong>{{ project.project.description }}</div>
+                <div><strong>Cost:</strong> {{ project.project.cost }}</div>
+                <div><strong>Profit: </strong>{{ project.project.profit }}</div>
+                <div><strong>Start date:</strong> {{ project.project.start_date }}</div>
+                <div><strong>End date:</strong> {{ project.project.end_date }}<br><br></div>
+                {% if project.owner %}
+                <a href='/projects/{{ project.project.id }}/project_edit'>
+                  <div class="button">Edit Project</div>
+                </a>
+                <a href='/projects/{{ project.project.id }}/project_delete'>
+                  <div class="button">Delete Project</div>
+                  
+                </a>
+                <br>
+                {% else %}
+                <div class="button"><strong>Project Owner: </strong>{{ project.project.owner.first_name }}</div>
+                <div class="blank">    </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p>No projects are available.</p>
+      {% endif %}
+    </div>
+
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  </body>
+
+</html>

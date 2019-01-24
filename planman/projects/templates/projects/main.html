@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PlanMan</title>
+    <link rel="icon" href="{% static 'img/logo2.png' %}">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Lato' %}" rel="stylesheet">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900' %}" rel="stylesheet">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Muli' %}" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="{% static 'device-mockups/device-mockups.min.css' %}">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/new-age.min.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">PlanMan</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#features">What is PlanMan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#login">Become a PlanMan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/projects">Your Projects</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-lg-7 my-auto">
+            <div class="header-content mx-auto">
+              <h1 class="mb-5">PlanMan is a project management software which helps you organize projects easier than ever!</h1>
+              {% if request.user.is_authenticated %}
+             <a href="/logout">
+              <div class="btn btn-outline btn-xl js-scroll-trigger">
+               <t id="#textlink">Log Out</t>
+              </div>
+             </a>
+            {% else %}
+           
+             <a href="{% url 'social:begin' 'google-oauth2' %}?next=/projects">
+              <div class="btn btn-outline btn-xl js-scroll-trigger">
+               <t id="#textlink">Become a PlanMan<br></t>
+              </div>
+             </a>
+            {% endif %}
+            </div>
+          </div>
+          <div class="col-lg-5 my-auto">
+            <img src="{% static 'img/logo2.png' %}" class="img-fluid" alt="">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-heading text-center">
+          <h2>What can PlanMan do?</h2>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 my-auto">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-screen-smartphone text-primary"></i>
+                    <h3>Scalable</h3>
+                    <p class="text-muted">PlanMan is accessible from smartphones to desktops, and anything inbetween.</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-camera text-primary"></i>
+                    <h3>Flexible Use</h3>
+                    <p class="text-muted">PlanMan is useful for any type of long term, task-based project.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-present text-primary"></i>
+                    <h3>Free to Use</h3>
+                    <p class="text-muted">PlanMan is completely free to use for anyone with a Google account.</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-lock-open text-primary"></i>
+                    <h3>Open Source</h3>
+                    <p class="text-muted">PlanMan's source code is avaliable on Github, so feel free to make your own improvements.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="login">
+      <div class="cta-content">
+        <div class="container">
+          <h2>Stop waiting.<br>Start planning.</h2>
+            {% if request.user.is_authenticated %}
+             <a href="/logout">
+              <div class="btn btn-outline btn-xl js-scroll-trigger">
+               <t id="#textlink">Log Out</t>
+              </div>
+             </a>
+            {% else %}
+           
+             <a href="{% url 'social:begin' 'google-oauth2' %}?next=/projects">
+              <div class="btn btn-outline btn-xl js-scroll-trigger">
+               <t id="#textlink">Become a PlanMan<br></t>
+              </div>
+             </a>
+            {% endif %}
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </section>
+
+    <section class="contact bg-primary" id="contact">
+      <div class="container">
+        <h2>About us</h2>
+        <p>PlanMan was created by 2 high school students, Youssef Zayed and Adam Koziak.</p>
+        <p>If you have any issues or concerns with PlanMan, please feel free to contact us below: <br><br>
+          <strong>Adam Koziak (Lead UI/UX designer):</strong><br>adam.koziak2@gmail.com<br><br>
+          <strong>Youssef Zayed (Lead back-end programmer):</strong><br>yzaye1@ocdsb.ca</p>
+      </div>
+
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; PlanMan 2018. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  </body>
+
+</html>
