@@ -21,6 +21,7 @@
 		<div class="wrap-contact2">
 		  <form method="POST" class="contact2-form validate-form">
 			<span class="contact2-form-title">Create a Project</span>
+			<!-- accesses field form, lists them in a grid -->
 			{% csrf_token %}
 			{% for form_field in Project_create %}
 			<div class="wrap-input2 validate-input" data-validate="Name is required">
@@ -28,6 +29,7 @@
 			  <span class="focus-input2" data-placeholder="{{ form_field.label }}"></span>
 			</div>
 			{% endfor %}
+			<!-- saves choices -->
 			<div class="container-contact2-form-btn">
 			  <div class="wrap-contact2-form-btn">
 				<div class="contact2-form-bgbtn"></div>

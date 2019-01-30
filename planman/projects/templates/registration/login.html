@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="{% static 'img/logo2.png' %}"/>
+	<!-- stylesheets -->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
@@ -15,15 +16,15 @@
 
 </head>
 <body>
-
+<!-- login container -->
 	<div class="bg-contact2" style="background-image: url('images/bg-01.jpg');">
 	  <div class="container-contact2">
 		<div class="wrap-contact2">
       <span class="contact2-form-title">Become a PlanMan</span>
       <h5 style="text-align: center;">Signing in? That sounds like a plan!<br><br><br></h5>
-			
 			<div class="container-contact2-form-btn">
 			  <div class="wrap-contact2-form-btn">
+					<!-- redirects to google's sign in service -->
         <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
           <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
          </a>

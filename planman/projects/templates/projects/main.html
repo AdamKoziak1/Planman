@@ -58,13 +58,15 @@
         </div>
       </div>
     </nav>
-
+<!-- Logo and description -->
     <header class="masthead">
       <div class="container h-100">
         <div class="row h-100">
           <div class="col-lg-7 my-auto">
             <div class="header-content mx-auto">
               <h1 class="mb-5">PlanMan is a project management software which helps you organize projects easier than ever!</h1>
+
+              <!-- button changes depending on login -->
               {% if request.user.is_authenticated %}
              <a href="/logout">
               <div class="btn btn-outline btn-xl js-scroll-trigger">
@@ -72,7 +74,6 @@
               </div>
              </a>
             {% else %}
-           
              <a href="{% url 'social:begin' 'google-oauth2' %}?next=/projects">
               <div class="btn btn-outline btn-xl js-scroll-trigger">
                <t id="#textlink">Become a PlanMan<br></t>
@@ -87,7 +88,7 @@
         </div>
       </div>
     </header>
-
+<!-- grid of features -->
     <section class="features" id="features">
       <div class="container">
         <div class="section-heading text-center">
@@ -134,10 +135,11 @@
         </div>
       </div>
     </section>
-
+<!-- login section -->
     <section class="cta" id="login">
       <div class="cta-content">
         <div class="container">
+          <!-- button changes depending on if you are logged in -->
           <h2>Stop waiting.<br>Start planning.</h2>
             {% if request.user.is_authenticated %}
              <a href="/logout">
@@ -146,7 +148,6 @@
               </div>
              </a>
             {% else %}
-           
              <a href="{% url 'social:begin' 'google-oauth2' %}?next=/projects">
               <div class="btn btn-outline btn-xl js-scroll-trigger">
                <t id="#textlink">Become a PlanMan<br></t>
@@ -158,6 +159,7 @@
       <div class="overlay"></div>
     </section>
 
+<!-- contact section -->
     <section class="contact bg-primary" id="contact">
       <div class="container">
         <h2>About us</h2>
@@ -175,11 +177,9 @@
       </div>
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
+    <!-- JavaScript -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-    <!-- Plugin JavaScript -->
     <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
   </body>

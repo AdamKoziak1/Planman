@@ -1,9 +1,7 @@
 
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
+/*!
+styling for create/edit pages, as well as invite user
+ */
 
 @font-face {
   font-family: Poppins-Regular;
@@ -20,12 +18,6 @@
   src: url('../fonts/poppins/Poppins-Bold.ttf'); 
 }
 
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
-
 * {
 	margin: 0px; 
 	padding: 0px; 
@@ -37,7 +29,6 @@ body, html {
 	font-family: Poppins-Regular, sans-serif;
 }
 
-/*---------------------------------------------*/
 a {
 	font-family: Poppins-Regular;
 	font-size: 14px;
@@ -59,7 +50,6 @@ a:hover {
 	color: #57b846;
 }
 
-/*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
@@ -77,8 +67,6 @@ ul, li {
 	list-style-type: none;
 }
 
-
-/*---------------------------------------------*/
 input {
 	outline: none;
 	border: none;
@@ -113,7 +101,6 @@ textarea:-moz-placeholder { color: #999999; }
 textarea::-moz-placeholder { color: #999999; }
 textarea:-ms-input-placeholder { color: #999999; }
 
-/*---------------------------------------------*/
 button {
 	outline: none !important;
 	border: none;
@@ -128,12 +115,6 @@ iframe {
 	border: none !important;
 }
 
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ Contact 2 ]*/
 .bg-contact2 {
   width: 100%;  
   background-repeat: no-repeat;
@@ -166,10 +147,6 @@ iframe {
   padding: 72px 55px 90px 55px;
 }
 
-
-/*------------------------------------------------------------------
-[  ]*/
-
 .contact2-form {
   width: 100%;
 }
@@ -183,11 +160,6 @@ iframe {
   text-align: center;
   padding-bottom: 90px;
 }
-
-
-
-/*------------------------------------------------------------------
-[  ]*/
 
 .wrap-input2 {
   width: 100%;
@@ -254,7 +226,6 @@ iframe {
   transition: all 0.4s;
 }
 
-/*---------------------------------------------*/
 input.input2 {
   height: 45px;
 }
@@ -291,8 +262,6 @@ textarea.input2 + .focus-input2::after {
   width: 100%;
 }
 
-/*------------------------------------------------------------------
-[ Button ]*/
 .container-contact2-form-btn {
   display: -webkit-box;
   display: -webkit-flex;
@@ -357,19 +326,11 @@ textarea.input2 + .focus-input2::after {
   left: 0;
 }
 
-/*------------------------------------------------------------------
-[ Responsive ]*/
-
 @media (max-width: 576px) {
   .wrap-contact2 {
     padding: 72px 15px 90px 15px;
   }
 }
-
-
-
-/*------------------------------------------------------------------
-[ Alert validate ]*/
 
 .validate-input {
   position: relative;
