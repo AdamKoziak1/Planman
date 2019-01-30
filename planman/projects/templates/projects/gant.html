@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="{% static 'img/logo2.png' %}"/>
+    <title>chart</title>
+
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jexcel/1.5.7/js/jquery.jexcel.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jexcel/1.5.7/css/jquery.jexcel.css" type="text/css" />
+    <link href="{% static 'css/3-col-portfolio.css' %}" rel="stylesheet">
+
+  </head>
+
+<body>
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/projects">PlanMan</a>
+      <a class="navbar-brand" href="#"><img src="{% static '/img/logo2.png' %}" width="40px" height="40px" alt="PlanMan Logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Back to Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Log out</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/projects/{{project_id}}">Tasks view</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+      <h1 class="my-4">{{ project_name.name }}</h1>
+      <div class='desc'><strong>Description: </strong>{{ project_name.description }}</div>
+      <div class='cost'><strong><br>Cost:</strong> {{ project_name.cost }}</div>
+      <div class='profit'><strong>Profit: </strong>{{ project_name.profit }}</div>
+      <div><strong><br>Project owner:</strong> {{ project_name.owner.first_name }} ({{ project_name.owner.email }})</div> 
+      <div><strong>Users:</strong></div>
+      <ul>
+        {% for user in project_members.users.all  %}
+         <li>
+          {{ user.first_name }} ({{user.email}})<br>
+         </li>
+        {% endfor %}
+      </ul>
+      
+      <br>
+      <a href='{{ project_id }}/user_list'>
+          <button>Add users</button> 
+      </a>
+      <br>
+      <br>
+      </div>
+    <div class="chart">
+                    
+    <div id="chart" style="padding-left:200px"></div>
+
+
+
+    <script type="text/javascript">
+    
+    var list = {{ list|safe }};
+    var debugmsg = {{ debugging|safe }};
+    var tasks = {{ tasks|safe }};
+    console.log(tasks)
+
+    var colwidths = []
+    var column_settings = []
+    for (var i in list){
+      if (list.length<8){
+        colwidths.push(300)
+      }else{
+        colwidths.push(90)
+      }
+      
+      column_settings.push({ type:'text', wordWrap:true, readOnly:true })
+    }
+  
+    data = [
+        [''],
+    ];
+    
+    $('#chart').jexcel({
+        data:data,
+        colHeaders: list,
+        colWidths: colwidths,
+        columns: column_settings,
+        minDimensions:[list.length,tasks.length],
+        tableOverflow:true,
+       
+    });
+    $('#chart').jexcel('updateSettings', {
+    table: function (instance, cell, col, row, val, id) {
+        // Number formating
+
+        var today_date = 0;
+        
+        for(var task_index in tasks){
+          var min_col = 0;
+          var max_col = -1;
+        for (var date_index in list){
+            
+            if(tasks[task_index][1]==list[date_index]){
+              min_col = date_index;
+            }
+            if(tasks[task_index][2]==list[date_index]){
+              max_col = date_index;
+            }
+            
+            if ( (max_col-min_col) > -1){
+             
+               
+              for (duration = 0; duration <= max_col-min_col; duration++) {
+                //console.log("col = "+ col + " min col is " + min_col + " task is "+ tasks[task_index][0] + " max col is "+ max_col  + " row is "+ row + " task_row  is "+ task_index)
+                  color_cell(task_index,(parseInt(min_col)+parseInt(duration)),'green',tasks[task_index][0]);
+                }
+                break;
+              }
+            }
+          if (max_col-min_col <= -1){
+            if (col == parseInt(list.length-1) && row == parseInt(task_index)){
+              $(cell).html(tasks[task_index][0]); 
+              $(cell).css('background-color', 'orange');
+              $(cell).css('color', 'black');
+            }
+          }
+          }
+        
+        
+
+
+       
+        function color_cell(row_num,col_num,coloring,text){
+          console.log("col = "+ col + " col_num is " + col_num + " task is "+ text + " row is "+ row + " task_row  is "+ row_num)
+            if (row == row_num){
+              if (col == col_num){
+                $(cell).html(text); 
+              $(cell).css('background-color', coloring);
+              $(cell).css('color', 'black');
+            }
+        }
+        }
+        
+        // if ($('#chart').jexcel('getHeader', 2) == list[2]) {
+        //     // Get text
+           
+        //     txt = $(cell).text();
+        //     // Format text
+        //     txt = numeral(txt).format('0,0.00');
+        //     // Update cell value
+        //     $(cell).html(' $ ' + txt);
+        // }
+
+        // // Odd row colours
+        // if (row % 2) {
+        //     $(cell).css('background-color', '#edf3ff');
+        // }
+
+        // // Remove controls for the last row
+        // if (row == 9) {
+        //     if (col < 3) {
+        //         $(cell).html('');
+        //     } 
+
+        //     if (col == 2) {
+        //         $(cell).html('Total');
+        //     }
+
+        //     $(cell).css('background-color', '#f46e42');
+        //     $(cell).css('color', '#fff');
+        // }
+    }
+});
+    </script>
+</body>
+
+</html>

@@ -5,11 +5,12 @@ from projects.models import Project,Task,Project_members
 from django import forms
 
 class Project_create(forms.ModelForm):
+    #start_date = DateField(input_formats=settings.DATE_INPUT_FORMATS)
     class Meta:
         model = Project
         fields = ('name', 'owner', 'description', 'cost', 'profit', 'start_date', 'end_date',)
         labels = {
-            'name': ('Task Name'),
+            'name': ('Project Name'),
             'owner': ('Project Owner'),
             'description': ('Description'),
             'cost': ('Cost (Number)'),
@@ -22,7 +23,7 @@ class Project_create(forms.ModelForm):
 class Task_form(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('name', 'description', 'cost', 'profit', 'start_date', 'end_date', 'hours_to_finish', 'hours_finished', 'project', 'parent_task')
+        fields = ('name', 'description', 'cost', 'profit', 'start_date', 'end_date', 'hours_to_finish', 'hours_finished', 'project')
         labels = {
             'name': ('Task Name'),
             'description': ('Description'),
@@ -33,7 +34,6 @@ class Task_form(forms.ModelForm):
             'hours_to_finish': ('Hours Remaining (Number)'),
             'hours_finished': ('Hours Completed (Number)'),
             'project': ('Parent Project'),
-            'parent_task': ('Parent Task'),
         }
         exclude = ['project']
 class Project_user(forms.ModelForm):

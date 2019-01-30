@@ -5,18 +5,56 @@ styling for projects and project page
 
  body {
   padding-top: 54px;
+  /* Background pattern from Toptal Subtle Patterns */
+  background-image: url(../img/prism.png) ;
+  color: white;
 }
 
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
+    color: white;
+    background-image: url(../img/prism.png) ;
   }
 }
 
 .portfolio-item {
   margin-bottom: 30px;
+  border-style: solid;
+  border-color: rgb(87, 87, 87);
+  border-width: 5px;
+  color: black;
 }
 
 .pagination {
   margin-bottom: 30px;
+}
+.error{
+  color: red;
+}
+.chart {
+  color: black;
+}
+
+.button {
+  display: inline-block;
+  border: 2px solid gray;
+  text-decoration: none;
+  align-self: center;
+  margin-top: 3px;
+  margin-bottom: -6px;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding:3px;
+}
+
+.blank {
+  display: inline-block;
+  text-decoration: none;
+  align-self: center;
+  margin-top: 3px;
+  margin-bottom: 17px;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding:3px;
 }

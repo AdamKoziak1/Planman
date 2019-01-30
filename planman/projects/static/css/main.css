@@ -18,6 +18,14 @@ styling for create/edit pages, as well as invite user
   src: url('../fonts/poppins/Poppins-Bold.ttf'); 
 }
 
+<<<<<<< HEAD
+=======
+
+
+/*//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]*/
+
+>>>>>>> 295b2a546a65f898193e8b72ab54a4cdf948a618
 * {
 	margin: 0px; 
 	padding: 0px; 
@@ -48,6 +56,9 @@ a:focus {
 a:hover {
 	text-decoration: none;
 	color: #57b846;
+}
+.error{
+  color: red;
 }
 
 h1,h2,h3,h4,h5,h6 {
