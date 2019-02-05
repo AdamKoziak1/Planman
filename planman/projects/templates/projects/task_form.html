@@ -15,13 +15,16 @@
 
 </head>
 <body>
-<!-- lists all fields for tasks -->
+
 	<div class="bg-contact2" style="background-image: url('images/bg-01.jpg');">
 	  <div class="container-contact2">
 		<div class="wrap-contact2">
 		  <form method="POST" class="contact2-form validate-form">
 			<span class="contact2-form-title">Create a Task</span>
 			{% csrf_token %}
+
+<!-- lists all fields for tasks -->
+
 			{% for form_field in task_form %}
 			<div class="wrap-input2 validate-input" data-validate="Name is required">
 					
@@ -30,6 +33,7 @@
 					<input class="input2" type="text" name="{{ form_field.name }}" value="{{ form_field.value|default_if_none:'' }}">
 	
 				</div>
+				
 				{% for error in form_field.errors %}
 							<br>
 							<div style="color: red"> <strong>{{ error }}</strong></div> 
@@ -39,7 +43,9 @@
 			<div class="container-contact2-form-btn">
 			  <div class="wrap-contact2-form-btn">
 				<div class="contact2-form-bgbtn"></div>
+
 				<!-- creates the task in database -->
+
 					<button class="contact2-form-btn" type="submit">Save Task</button>
 				</div>
 			  </div>
@@ -50,7 +56,7 @@
 	</div> 
 
 
-
+<!-- some scaling scripts -->
 
 	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>

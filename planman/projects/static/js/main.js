@@ -3,8 +3,7 @@
     "use strict";
 
 
-    /*==================================================================
-    [ Focus Contact2 ]*/
+    /* zooming blur animation */
     $('.input2').each(function(){
         $(this).on('blur', function(){
             if($(this).val().trim() != "") {
@@ -18,8 +17,7 @@
             
   
     
-    /*==================================================================
-    [ Validate ]*/
+    /* Validation doesnt end up being used in this way */
     var name = $('.validate-input input[name="name"]');
     var email = $('.validate-input input[name="email"]');
     var message = $('.validate-input textarea[name="message"]');
