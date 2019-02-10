@@ -2,7 +2,7 @@
 
 Planman is an online project planner and organizer. It will be developed by two high school students over a period of 3 months. The team will be formed by a front-end developer who will mainly handle client-side interactions such as the html, CSS, and javascript, who is will be (Adam) and a backend developer who will mainly handle server-side interact such as authentication and database management (Youssef.
 
-# Planman.ca is now live!
+# Planman.ca is now live, but is still a work in progress!
 
 
 
